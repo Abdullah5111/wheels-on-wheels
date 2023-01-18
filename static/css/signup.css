@@ -1,0 +1,266 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+    /* nav***************************************************************************************************************** */
+
+.navbar-holder{  
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-container{
+    display: flex;
+    width: 300px;
+    border-bottom: 2px solid #FDFDFF;
+}
+
+.navbar-logo-div{
+    height: 70px;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: left;
+}
+
+.navbar-logo-div img{
+    height: 50px;
+}
+
+.navbar-buttons{
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-buttons a{
+    font-size: 16px;
+    color: #FDFDFF;
+    text-decoration: none;
+
+    transition: color 0.5s;
+}
+
+.navbar-buttons a:hover{
+    color: #62929E;
+    text-decoration: none;
+}
+
+@media (min-width: 440px) {
+    .navbar-container{ width: 400px; }
+    .navbar-buttons a{
+        font-size: 18px;}
+}
+
+/* Signup section***************************************************************************************************************** */
+
+
+.signup-hero-section{
+    height: 460px;
+    border: 2px solid #FDFDFF;
+    background-image: url('../images/slideshow/slideshow1.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.signup-hero-container{
+    display: flex;
+    justify-content: center;
+}
+
+.signup-hero-container p{
+    border-top: 3px solid #FDFDFF;
+    border-bottom: 3px solid #FDFDFF;
+    padding: 10px 40px;
+    border-radius: 20px;
+    color: #FDFDFF;
+    font-size: 46px;
+    letter-spacing: 3px;
+    margin: 0px;
+    margin-top: 260px;
+}
+
+/* Signup section***************************************************************************************************************** */
+
+.signup-container{
+    display: grid;
+}
+
+.specific-signup{
+    color: #FDFDFF;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.specific-signup:hover{
+    text-decoration: none;
+}
+
+.specific-signup div{
+    height: 300px;
+    padding: 30px;
+    border: 2px solid #FDFDFF;
+
+    background-image: url('../images/slideshow/slideshow2.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.specific-signup-buyer div{
+    background-image: url('../images/slideshow/slideshow3.jpg');
+
+}
+
+.specific-signup div:hover{
+    background-size: 200%;
+    color: #FDFDFF;
+    text-decoration: none !important;
+}
+
+.login-option{
+    height: 120px;
+    background: #62929E;
+    border: 2px solid #FDFDFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    transition: background-color 0.5s;
+}
+
+.login-option:hover{
+    background: #322f2f;
+
+}
+
+.login-option-text{
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #FDFDFF;
+}
+
+.login{
+    margin: 0;
+    color: #FDFDFF;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-top: 2px solid #FDFDFF;
+    border-bottom: 2px solid #FDFDFF;
+    border-radius: 12px;
+    text-decoration: none;
+
+    transition: padding 0.5s;
+}
+
+.login:hover{
+    padding: 10px 30px;
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .signup-container{ grid-template-columns: repeat(2, 1fr); }   
+} 
+
+/* footer***************************************************************************************************************** */
+
+.footer-section{
+    width: 100%;
+    background-color: #132027;
+    border: 2px solid #FDFDFF;
+}
+
+.footer-div{
+    display: grid;
+}
+
+.footer-inner-div {
+    height: 300px;
+    color: #FDFDFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.footer-logo img{
+    height: 80px;
+}
+
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.footer-link{
+    color: #FDFDFF !important;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.footer-link:hover{
+    text-decoration: none;
+    color: #62929E !important;
+}
+
+.social-logo{
+    height: 24px;
+}
+
+.contact-label{
+    display: flex;
+    justify-content:start;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.contact-label img{
+    margin-right: 10px;
+    height: 20px;
+}
+
+.contact-label p{
+    margin: 0px;
+}
+
+.location-label img{
+    height: 20px;
+}
+
+.footer-div-4 p{
+    margin: 0;
+}
+
+
+@media (min-width: 800px) { 
+    .footer-div{ grid-template-columns: repeat(4, 1fr); }
+} 
+
+@media (max-width: 800px) {
+    .footer-div-2{display: none;}
+    
+    .footer-div{ grid-template-columns: repeat(3, 1fr); }
+} 
+
+@media (max-width: 700px){
+    .footer-inner-div{height: 180px;}
+    .footer-div-2{display: none;}
+    .footer-div-4{display: none;}
+    .social-box{display:none;}
+    .footer-div{ grid-template-columns: repeat(2, 1fr); }
+}

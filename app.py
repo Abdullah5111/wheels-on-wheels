@@ -14,5 +14,9 @@ def signup():
 def signup_seller():
 	return render_template('signup-seller.html')
 
+@app.route('/about-us')
+def about_us():
+	return render_template('about2.html')
+
 if __name__ == '__main__':
 	app.run(debug=True)

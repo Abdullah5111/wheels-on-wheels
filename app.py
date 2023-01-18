@@ -10,5 +10,9 @@ def home():
 def signup():
 	return render_template('signup.html')
 
+@app.route('/signup-seller')
+def signup_seller():
+	return render_template('signup-seller.html')
+
 if __name__ == '__main__':
 	app.run(debug=True)

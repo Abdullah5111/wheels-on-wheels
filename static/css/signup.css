@@ -75,13 +75,13 @@ body {
 .signup-hero-container p{
     border-top: 3px solid #FDFDFF;
     border-bottom: 3px solid #FDFDFF;
-    padding: 10px 40px;
+    padding: 8px 30px;
     border-radius: 20px;
     color: #FDFDFF;
-    font-size: 46px;
+    font-size: 26px;
     letter-spacing: 3px;
     margin: 0px;
-    margin-top: 260px;
+    margin-top: 218px;
 }
 
 /* Signup section***************************************************************************************************************** */

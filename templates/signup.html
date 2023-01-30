@@ -1,107 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sign up</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
 
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
     <!-- Own css -->
-	<link rel="stylesheet" type="text/css" href="../static/css/signup.css">
-
+    <link rel="stylesheet" type="text/css" href="../static/css/signup.css">
 </head>
 <body>
-
-    <section class="signup-hero-section">            
-        <div class="navbar-holder">    
-            <div class="navbar-container">
-                <div class="navbar-logo-div">
-                    <a href="#"><img src="../static/images/wow-logo-white.png" alt=""></a>
-                </div>
-                <div class="navbar-buttons">
-                    <a href="#">About</a>
-                    <a href="./login.html">Login</a>
-                    <a href="./signup.html">Sign up</a>
-                </div>
+    <section class="container login-section">
+        <div class="login-container">
+            <div class="container logo-div">
+                <img src="../static/images/wow-logo-white.png" alt="">
             </div>
-        </div>
-        <div class="signup-hero-container">
-            <p>Sign up</p>
-        </div>
-    </section>
-
-    <section class="signup-section">
-        <div class="signup-container">
-            <a class="specific-signup specific-signup-seller" href="/signup-register">
-                <div>
-                    As a seller
-                </div>
-            </a>
-            <a class="specific-signup specific-signup-buyer" href="#">
-                <div>
-                    As a buyer
-                </div>
-            </a>
-        </div>
-        <div class="login-option">
-            <p class="login-option-text">Already an account?</p>
-            <a href="./login.html" class="login">Login</a>
-        </div>
-    </section>
-
-    <section class="footer-section">
-        <div class="footer-div">
-            <div class="footer-inner-div footer-div-1">
-                <div class="footer-logo">
-                    <img src="../static/images/wow-logo-white.png" alt="logo">
-                </div>
-            </div>
-            <div class="footer-inner-div footer-div-2">
-                <div class="footer-links">
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">Post an ad</a>
-                    <a href="#" class="footer-link">Cars store</a>
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">About us</a>
-                </div>
-            </div>
-            <div class="footer-inner-div footer-div-3">
-                <div class="contact-info">
-                    <div class="call">
-                        <div class="contact-label">
-                            <img src="../static/images/footer/phone.png" alt="">
-                            <p>Call</p>
-                        </div>
-                        <p>048 8989893</p>
+            <div class="container login-form-div">
+                <form class="login-form" action="/action_page.php" method="post">
+                     <div class="container login-form-container">
+                        <input class="input-tag" type="username" placeholder="username" name="uname" required>
+                        <select name="uname" id="users">
+                            <option value="seller">Seller</option>
+                            <option value="buyer">Buyer</option>
+                        </select>
+                        <input class="input-tag" type="email" placeholder="email" name="email" required>
+                        <input class="input-tag" type="password" placeholder="password" name="password" required>
+                        <input class="input-tag" type="password" placeholder="password2" name="password2" required>
+                        <input class="button input-button" type="submit" value="Signup">
                     </div>
-                    <div class="email">
-                        <div class="contact-label">
-                            <img src="../static/images/footer/mail.png" alt="">
-                            <p>Email</p>
-                        </div>
-                        <p>abc123@gmail.com</p>
-                    </div>
-                    <div class="social-box">
-                        <a href="#" class="social-link">
-                            <img class="social-logo" src="../static/images/social/facebook.png" alt="facebook-logo">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img class="social-logo" src="../static/images/social/instagram.png" alt="facebook-logo">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img class="social-logo" src="../static/images/social/linkedin.png" alt="facebook-logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-inner-div footer-div-4">
-                <div class="location">
-                    <div class=" contact-label">
-                        <img src="../static/images/footer/location.png" alt="">
-                        <p class="location-label">Location</p>
-                    </div>
-                    <p>H8-Islamabad,</p>
-                    <p>Pakistan</p>
+                </form>
+                <div class="container signup-option">
+                    <p class="signup-text">Already an account</p>
+                    <a href="/login" class="button signup-button">Login</a>
                 </div>
             </div>
         </div>

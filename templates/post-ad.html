@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Post Ad</title>
+      <!-- Google fonts -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  
+      <!-- Own css -->
+     <link rel="stylesheet" type="text/css" href="../static/css/post-ad.css">
+  
+      <!-- Bootstrap css -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+  
+      <style>
+          body {
+          font-family: "Montserrat", sans-serif;
+      }
+      </style>
+  </head>
+   <body>
+    <section class="container login-section">
+        <div class="login-container">
+            <div class="container logo-div">
+                <img src="../static/images/wow-logo-white.png" alt="">
+            </div>
+            <div class="container login-form-div">
+                <form class="login-form" action="/action_page.php" method="post">
+                     <div class="container login-form-container">
+                        <input class="input-tag" type="username" placeholder="username" name="uname" required>
+                        <input class="input-tag" type="password" placeholder="password" name="password" required>
+                        <input class="button input-button" type="submit" value="Login">
+                    </div>
+                </form>
+                <div class="container signup-option">
+                    <p class="signup-text">Create new account</p>
+                    <a href="signup" class="button signup-button">Signup</a>
+                </div>
+            </div>
+        </div>
+    </section>
+      <section class="ad-form">
+        <div class="ad-form-container">
+            <form class="form" action = "/get-ad" method = "POST" 
+                enctype = "multipart/form-data">
+                <input type = "text" name = "company" placeholder="company" required/><br>
+                <input type = "text" name = "model" placeholder="model" required/><br>
+                <input type = "text" name = "price" placeholder="price" required/><br>
+                <input type = "text" name = "registered_year" placeholder="registered_year" required/><br>
+                <input type = "text" name = "registered_loc" placeholder="registered_loc" required/><br>
+                <input type = "text" name = "current_loc" placeholder="current_loc" required/><br>
+                <input type = "text" name = "engine_cap" placeholder="engine_cap" required/><br>
+                <input type = "text" name = "km_driven" placeholder="km_driven" required/><br>
+                <input type = "text" name = "transmission" placeholder="transmission" required/><br>
+                <input type = "text" name = "description" placeholder="description" required/><br>
+                <input type = "file" name = "file"/><br>
+                <input type = "text" name = "creator" placeholder="creator" required/><br>
+                
+                <input id="submit" value = "submit" type="submit"/>
+            </form>
+        </div>
+      </section>
+   </body>
+</html>

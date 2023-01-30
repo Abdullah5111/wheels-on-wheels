@@ -29,9 +29,9 @@
                         <a href="#"><img src="../static/images/wow-logo-white.png" alt=""></a>
                     </div>
                     <div class="navbar-buttons">
-                        <a href="#">About</a>
-                        <a href="#">Login</a>
-                        <a href="#">Sign up</a>
+                        <a href="about-us">About</a>
+                        <a href="/login">Login</a>
+                        <a href="/signup">Sign up</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <div class="dashboard-button">
                         <div class="post-car-div">      
                             <h2 class="post-car-heading">Want to sell a car?</h2>
-                            <a class="dashboard-button-link post-car-button" href="#">Post an ad</a>
+                            <a class="dashboard-button-link post-car-button" href="/seller-dashboard">Post an ad</a>
                         </div>
                     </div>
                     <div class="dashboard-button">
@@ -135,6 +135,36 @@
         </div>
     </section>
 
+    <section class="ads">
+        <div class="ads-heading">
+            <h2>Get Your Car Now</h2>
+        </div>
+        <div class="ads-container">
+            {% for ad in data %}
+                <div class="ad">
+                    <div class="car-data">
+                        <div class="ad-image">
+                            <img src={{ad.image}} alt="">
+                        </div>
+                        <div class="specs">
+                            <p class="company"><strong>Company </strong>{{ad.company}}</p>
+                            <p class="model"><strong>Model </strong>{{ad.model}}</p>
+                            <p class="price"><strong>Price </strong>{{ad.price}}</p>
+                            <!-- <p class="registered_year"><strong>Registeration Year </strong>{{ad.registered_year}}</p>
+                            <p class="registered_loc"><strong>Registered Location </strong>{{ad.registered_loc}}</p>
+                            <p class="current_loc"><strong>Current Location </strong>{{ad.current_loc}}</p>
+                            <p class="engine_cap"><strong>Engine Capacity </strong>{{ad.engine_cap}}</p>
+                            <p class="km_driven"><strong>KM Driven </strong>{{ad.km_driven}}</p>
+                            <p class="transmission"><strong>Transmission </strong>{{ad.transmission}}</p> -->
+                        </div>
+                    </div>           
+                    <div class="buy-button-div">
+                        <a href="#" class="buy-button"><strong>Buy Now</strong></a>
+                    </div>
+                </div> 
+            {% endfor %}
+        </div>
+    </section>
 
     <section class="brands-section">
         <div class="brands-container">

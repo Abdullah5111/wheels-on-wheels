@@ -215,6 +215,96 @@
     .about-container{ grid-template-columns: repeat(1, 1fr); }
 }
 
+/* Ads ******************************************************************************************************************* */
+
+.ads-heading h2{
+    background-color: #393D3F;
+    border: 2px solid #fdfdff;
+    color: #FDFDFF;
+    margin: 0;
+    padding: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.ads-container{
+    padding: 10px 60px;
+    display: grid;
+    gap: 60px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 20px;
+}
+
+.ad{
+    padding: 16px;
+    
+    border-bottom: 2px solid #62929E;
+    border-right: 2px solid #62929E;
+    border-radius: 0px 0px 22px 0px;
+}
+
+.ad:hover{
+    /* background-color: #c3d4d9; */
+}
+
+.car-data{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.ad-image{
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ad-image img{
+    border: 2px solid #132027;
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.specs p{
+    padding-left: 10px;
+    border-left: 4px solid #62929E;
+    background-color: #62929e00;
+
+    transition: background-color 0.3s, color;
+}
+
+.specs p:hover{
+    background-color: #62929e;
+    color: #FDFDFF;
+}
+
+.buy-button-div{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.buy-button{
+    text-align: center;
+    color: #62929E;
+    font-size: 18px;
+    padding: 6px 14px;
+    border-top: 2px solid #62929E;
+    border-bottom: 2px solid #62929E;
+    border-radius: 10px;
+    text-decoration: none;
+
+    transition: padding 0.5s;
+}
+
+.buy-button:hover{
+    text-decoration: none;
+    color: #62929E;
+    padding: 6px 24px;
+}
+
 /* brands***************************************************************************************************************** */
 
 .brands-section-heading{

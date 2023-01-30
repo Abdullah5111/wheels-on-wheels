@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad</title>
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <form id="form" action="">
+        <input style="display: none;" type="text" name="company" id="" value={{context[0]}}>
+        <input style="display: none;" type="text" name="model" id="" value={{context[1]}}>
+        <input style="display: none;" type="text" name="price" id="" value={{context[2]}}>
+        <input style="display: none;" type="text" name="registered_year" id="" value={{context[3]}}>
+        <input style="display: none;" type="text" name="registered_loc" id="" value={{context[4]}}>
+        <input style="display: none;" type="text" name="current_loc" id="" value={{context[5]}}>
+        <input style="display: none;" type="text" name="engine_cap" id="" value={{context[6]}}>
+        <input style="display: none;" type="text" name="km_driven" id="" value={{context[7]}}>
+        <input style="display: none;" type="text" name="transmission" id="" value={{context[8]}}>
+        <input style="display: none;" type="text" name="description" id="" value={{context[9]}}>
+        <input style="display: none;" type="text" name="image" id="" value={{context[10]}}>
+        <input style="display: none;" type="text" name="creator" id="" value={{context[11]}}>
+        <input id="submit" class="submit-button" type="button" value="Confirm Ad">
+    </form>
+    <p></p>
+    <a href="/">Back</a>
+
+    <script>
+        $(document).ready(function(){
+            $("#submit").on('click', function(){
+                var formdata = $("#form").serializeArray();
+                var data = {};
+                $(formdata).each(function(index, obj){
+                    data[obj.name] = obj.value;
+                });
+                console.log(data)
+                data=JSON.stringify(data)
+                $.ajax({
+                    url: '/api/ads',
+                    type : "POST",
+                    data : data,
+                    dataType : 'json',
+                    contentType: "application/json; charset=utf-8",
+    
+                    success : function(result) {
+                        $("p").append("Ad posted successfully");
+                        console.log(result);
+                    },
+                    error: function(xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    }
+                })
+            });
+        });
+        </script>
+</body>
+</html>

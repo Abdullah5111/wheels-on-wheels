@@ -243,10 +243,6 @@
     border-radius: 0px 0px 22px 0px;
 }
 
-.ad:hover{
-    /* background-color: #c3d4d9; */
-}
-
 .car-data{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -331,17 +327,107 @@
     padding: 10px;
     font-size: 18px;
     border: 2px solid #fdfdff;
-    background-image: url('../images/slideshow/slideshow3.jpg');
+}
+
+.brand-card:hover{
+    color: #FDFDFF;
+    text-decoration: none;
+}
+
+.toyota-card{
+    background-image: url('../images/home-brands/toyota.jpeg');
     background-size: 100%;
     background-position: center;
 
     transition: background-size 10s;
 }
 
-.brand-card:hover{
+.toyota-card:hover{
     background-size: 200%;
-    color: #FDFDFF;
-    text-decoration: none;
+}
+
+.havel-card{
+    background-image: url('../images/home-brands/haval.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.havel-card:hover{
+    background-size: 200%;
+}
+
+.honda-card{
+    background-image: url('../images/home-brands/honda.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.honda-card:hover{
+    background-size: 200%;
+}
+
+.hyundai-card{
+    background-image: url('../images/home-brands/hyundai.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.hyundai-card:hover{
+    background-size: 200%;
+}
+
+.KIA-card{
+    background-image: url('../images/home-brands/KIA.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.KIA-card:hover{
+    background-size: 200%;
+}
+
+.MG-card{
+    background-image: url('../images/home-brands/mg.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.peugeot-card:hover{
+    background-size: 200%;
+}
+
+.peugeot-card{
+    background-image: url('../images/home-brands/peugeot.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.MG-card:hover{
+    background-size: 200%;
+}
+
+.suzuki-card{
+    background-image: url('../images/home-brands/suzuki.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.suzuki-card:hover{
+    background-size: 200%;
 }
 
 @media (min-width: 300px) {

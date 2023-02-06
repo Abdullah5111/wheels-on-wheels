@@ -4,53 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ads</title>
-
+    <title>Car</title>
+    
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
     <!-- Own css -->
-    <link rel="stylesheet" type="text/css" href="../static/css/ads.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/car.css">
 
     <!-- Bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+
     <style>
         body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
             font-family: "Montserrat", sans-serif;
         }
     </style>
-    <script>
-        function checkSession()
-            {
-                var obj=(window.localStorage.getItem('usr'));
-                console.log(obj)
-                if(obj==null)
-                {
-                                $("#Login").show();
-                                $("#signup").show();
-                                $("#LogOut").hide();
-                }
-                else
-                {
-                            $(document).ready(function(e)
-                        {
-                            $("#Login").hide();
-                            $("#signup").hide();
-                            $("#LogOut").show();
-                        })
-                }
-            }
-            function logout(e)
-                    {
-                        e.preventDefault();
-                        window.localStorage.clear();
-                        $("#Login").show();
-                        $("#signup").show();
-                        $("#LogOut").hide();
-                    }
-    </script>
-</head onload="javascript:checkSession()">
+
+</head>
 <body>
     <section class="hero-section">
         <div class="hero-container">
@@ -60,50 +35,67 @@
                         <a href="/"><img src="../static/images/wow-logo-white.png" alt=""></a>
                     </div>
                     <div class="navbar-buttons">
-                        <a href="about-us" >About</a>
-                        <a href="/login" id="Login">Login</a>
-                        <a href="/signup" id="signup">Sign up</a>
-                        <a href="" id="LogOut" onclick="logout(event)">LogOut</a>
+                        <a href="about-us">About</a>
+                        <a href="/login">Login</a>
+                        <a href="/signup">Sign up</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="ads">
-        <div class="ads-heading">
-            <h2><strong>Explore Cars</strong></h2>
-        </div>
-        <div class="ads-container">
-            {% for ad in context %}
-                <div class="ad">
-                    <div class="ad-image-container container sub-container">
-                        <img src={{ad.image1}} alt="car-image">
-                    </div>
-                    <div class="container">
-                        <div class="specs-points-container">
-                            <p class="company"><strong>Company </strong>{{ad.company}}</p>
-                            <p class="model"><strong>Model </strong>{{ad.model}}</p>
-                            <p class="price"><strong>Price </strong>{{ad.price}}</p>
-                            <p class="registered_year"><strong>Registeration Year </strong>{{ad.registered_year}}</p>
-                            <p class="registered_loc"><strong>Registered Location </strong>{{ad.registered_loc}}</p>
-                            <p class="current_loc"><strong>Current Location </strong>{{ad.current_loc}}</p>
-                            <p class="engine_cap"><strong>Engine Capacity </strong>{{ad.engine_cap}}</p>
-                            <p class="km_driven"><strong>KM Driven </strong>{{ad.km_driven}}</p>
-                            <p class="transmission"><strong>Transmission </strong>{{ad.transmission}}</p>
+    <section class="ad-detail-section">
+        <div class="ad-container">
+            <div class="images">
+                <div class="image-container container">
+                    <img src={{context[0].image1}} alt="car-image">
+                </div>
+                <div class="image-container container">
+                    <img src={{context[0].image2}} alt="car-image">
+                </div>
+                <div class="image-container container">
+                    <img src={{context[0].image3}} alt="car-image">
+                </div>
+                <div class="image-container container">
+                    <img src={{context[0].image4}} alt="car-image">
+                </div>
+            </div>
+            <div class="details">
+                <div>
+                    <div class="car-details">
+                        <div class="heading-container">
+                            <h2 class="car-heading"><strong>Car Details</strong></h2>
                         </div>
+                        <p class="spec company"><strong>Company </strong>{{context[0].company}}</p>
+                        <p class="spec model"><strong>Model </strong>{{context[0].model}}</p>
+                        <p class="spec price"><strong>Price </strong>{{context[0].price}}</p>
+                        <p class="spec registered_year"><strong>Registeration Year </strong>{{context[0].registered_year}}</p>
+                        <p class="spec registered_loc"><strong>Registered Location </strong>{{context[0].registered_loc}}</p>
+                        <p class="spec current_loc"><strong>Current Location </strong>{{context[0].current_loc}}</p>
+                        <p class="spec engine_cap"><strong>Engine Capacity </strong>{{context[0].engine_cap}}</p>
+                        <p class="spec km_driven"><strong>KM Driven </strong>{{context[0].km_driven}}</p>
+                        <p class="spec transmission"><strong>Transmission </strong>{{context[0].transmission}}</p>
                     </div>
-                    <div class="button-form-container sub-container">
-                        <form action="/car", method="post">
-                            <input style="display: none;" value={{ad.id}} name="id"></input>
-                            <input style="display: none;" value={{ad.creator}} name="creator"></input>
-                            <div class="buy-button-div container">
-                                <input type="submit" class="buy-button" value="Contact Seller">
+                </div>
+                <div>
+                    <div class="seller-info-and-button">
+                        <div class="seller-container">
+                            <div class="heading-container">
+                                <h2 class="seller-heading"><strong>Seller Details</strong></h2>
                             </div>
-                        </form>
+                            <p class="seller-info name"><strong>Name </strong>{{context[1].c_name}}</p>
+                            <p class="seller-info name"><strong>Email </strong>{{context[1].email}}</p>
+                            <p class="seller-info name"><strong>Phone Number </strong>{{context[1].phone_number}}</p>
+                            <p class="seller-info name"><strong>Address </strong>{{context[1].address}}</p>
+                        </div>
+                        <a class="cars-page-button" href="/get-ads">
+                            <div class="cars-page-button-div container">
+                                <p>Back to cars</p>
+                            </div>
+                        </a>
                     </div>
-                </div> 
-            {% endfor %}
+                </div>
+            </div>
         </div>
     </section>
 

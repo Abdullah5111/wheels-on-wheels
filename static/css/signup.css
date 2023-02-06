@@ -26,7 +26,7 @@ body{
 }
 
 .logo-div{
-    height: 600px;
+    height: 560px;
     width: 500px;
     visibility:visible;
 }
@@ -37,32 +37,20 @@ body{
 }
 
 .login-form-div{
-    height: 600px;
+    height: 620px;
     width: 500px;
 }
 
 .login-form{
-    height: 300px;
+    height: 380px;
     width: 400px;
 }
 
 input[type=username],
 input[type=password],
-input[type=email]{
+input[type=email] {
     width: 100%;
     padding: 12px 20px;
-    font-size: 18px;
-    color: #132027;
-    letter-spacing: 1px;
-    margin: 8px 0;
-    outline: none;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-select{
-    width: 100%;
-    padding: 12px 18px;
     font-size: 18px;
     color: #132027;
     letter-spacing: 1px;
@@ -103,7 +91,6 @@ select{
 }
 
 .signup-text{
-    margin-top: 120px;
     text-align: center;
     font-size: 16px;
     color: #FDFDFF;

@@ -11,27 +11,82 @@
 
     <!-- Own css -->
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <!-- script for signup api-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="javascript:checkUrl()">
     <section class="container login-section">
         <div class="login-container">
             <div class="container logo-div">
                 <img src="../static/images/wow-logo-white.png" alt="">
             </div>
             <div class="container login-form-div">
-                <form class="login-form" action="/action_page.php" method="post">
+                <form class="login-form" id="form" method="post">
                      <div class="container login-form-container">
                         <input class="input-tag" type="username" placeholder="username" name="uname" required>
                         <input class="input-tag" type="password" placeholder="password" name="password" required>
-                        <input class="button input-button" type="submit" value="Login">
+                        <input class="button input-button" type="submit" value="Login" id="submit">
+                        <p style="color: rgb(210, 51, 51);" class="error-text" id="Status"></p>
                     </div>
                 </form>
                 <div class="container signup-option">
                     <p class="signup-text">Create new account</p>
                     <a href="signup" class="button signup-button">Signup</a>
                 </div>
+                <div class="container signup-option">
+                    <a class="button signup-button" href="/">Back to homepage</a>
+                </div>
             </div>
         </div>
     </section>
+     <!--Script for Login Api-->
+     <script>
+        function checkUrl()
+            {
+                if (window.location.href.indexOf('?email=') > 0) {
+                    document.getElementById("Status").innerText="User doesn't exist"
+                }
+            }
+            window.onload = checkUrl();
+        $(document).ready(function(){
+            $("#submit").on('click', function(e){
+                var formdata = $("#form").serializeArray();
+                var data = {};
+                $(formdata ).each(function(index, obj){
+                    data[obj.name] = obj.value;
+                });
+                var strname=data['name'];
+                var strpassword=data['password']; 
+                console.log(strname)
+                data=JSON.stringify(data)
+                console.log(data)
+                $.ajax({
+                    url: '/api/Login', // url where to submit the request
+                    type : "POST", // type of action POST || GET
+                    data : data, // post data || get data
+                    dataType : 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success : function(result) {
+                        if(result.error){
+                            window.location.href = '/login?email='+2;
+                        }
+                        else{
+                            window.localStorage.setItem('usr',JSON.stringify(result))
+                            var obj=JSON.parse(window.localStorage.getItem('usr'));
+                            var name=obj.name;
+                            console.log(obj.name);
+                            console.log(window.localStorage.getItem('usr'))
+                            window.location = '/seller-dashboard?nme='+name;
+                            // window.localStorage.setItem('usr',JSON.stringify(result))\
+                            // JSON.parse(window.localStorage.getItem('usr'))
+                        }
+                    },
+                    error: function(xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    }
+                })
+            });
+        });
+        </script>
 </body>
 </html>

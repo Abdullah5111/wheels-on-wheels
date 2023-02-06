@@ -1,11 +1,8 @@
 /* nav***************************************************************************************************************** */
 
 .hero-section{
-    height: 370px;
+    height: 70px;
     background-color: #132027;
-    background-image: url('../images/slideshow/slideshow3.jpg');
-    background-position: center;
-    background-size:100% auto;
 }
 
 .navbar-holder{  
@@ -31,7 +28,7 @@
 
 .navbar-logo-div img{
     height: 50px;
-
+    
     transition: filter 0.5s;
 }
 
@@ -59,48 +56,10 @@
     text-decoration: none;
 }
 
-@media (max-width: 660px) {
-    .hero-section{
-        height: 270px;
-        background-color: #132027;
-        background-image: url('../images/slideshow/slideshow3.jpg');
-        background-position: center;
-        background-size:100% auto;
-    }
-}
-
-@media (min-width: 360px) {
+@media (min-width: 400px) {
     .navbar-container{ width: 400px; }
     .navbar-buttons a{
         font-size: 18px;}
-}
-
-/* Post Ad *************************************************************************************************************** */
-
-.ad-post-button-div{
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.ad-post-button-div a{
-    color: #FDFDFF;
-    padding: 10px 30px;
-    text-decoration: none;
-    font-size: 24px;
-    border-top: 3px solid #FDFDFF;
-    border-bottom: 3px solid #FDFDFF;
-    border-radius: 16px;
-
-    transition: padding 0.5s;
-}
-
-.ad-post-button-div a:hover{
-    color: #FDFDFF;
-    text-decoration: none;
-    padding: 10px 40px;
 }
 
 /* Ads ******************************************************************************************************************* */
@@ -143,16 +102,7 @@
     border-left: 4px solid #62929E;
 }
 
-.remove-link{
-    text-decoration: none;
-    color: #62929E;
-}
-
-.remove-link:hover{
-    text-decoration: none;
-}
-
-.remove-button-div{
+.buy-button-div input{
     margin-top: 30px;
     padding: 10px 40px;
     font-size: 18px;
@@ -163,15 +113,10 @@
     transition: background-color 0.5s;
 }
 
-.remove-button-div:hover{
+.buy-button-div input:hover{
+    cursor: pointer;
     color: #FDFDFF;
     background-color: #62929E;
-}
-
-.remove-button-div p{
-    font-size: 18px;
-    margin: 0px;
-    letter-spacing: 1px;
 }
 
 @media (max-width: 1400px) {
@@ -208,101 +153,10 @@
     }
 }
 
-
-/* .ads{   
-    padding: 40px 100px;
-}
-.ads-heading h2{
-    color: #62929E;
-    margin: 0;
-    padding: 20px;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-.ads-container{
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(1, 1fr);
-    margin: 0px 20px;
-}
-
-.ad{
-    padding: 16px;
-    background-image: linear-gradient(to right, #62929E,#62929e00);
-}
-
-.car-data{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.ad-image{
-    display: flex;
-    justify-content:center;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.ad-image img{
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 36px 0px;
-    height: 300px;
-    width: 400px;
-    object-fit: cover;
-}
-
-.specs{
-    display: flex;
-    justify-content: center;
-}
-
-.specs-points{
-    width: 400px;
-}
-
-.specs p{
-    padding-left: 10px;
-    border-left: 4px solid #62929E;
-    background-color: #62929e00;
-
-    transition: background-color 0.3s, color;
-}
-
-.specs p:hover{
-    background-color: #62929e;
-    color: #FDFDFF;
-}
-
-.buy-button-div{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.buy-button{
-    text-align: center;
-    color: #FDFDFF;
-    font-size: 18px;
-    padding: 6px 24px;
-    border-top: 2px solid #FDFDFF;
-    border-bottom: 2px solid #FDFDFF;
-    border-radius: 10px;
-    text-decoration: none;
-
-    transition: padding 0.5s;
-}
-
-.buy-button:hover{
-    text-decoration: none;
-    color: #FDFDFF;
-    padding: 6px 34px;
-} */
-
 /* footer***************************************************************************************************************** */
 
 .footer-section{
+    width: 100%;
     background-color: #132027;
 }
 

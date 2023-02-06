@@ -11,33 +11,90 @@
 
     <!-- Own css -->
     <link rel="stylesheet" type="text/css" href="../static/css/signup.css">
+
+    <!-- script for signup api-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
-<body>
+
+<body onload="javascript:checkUrl()">
     <section class="container login-section">
         <div class="login-container">
             <div class="container logo-div">
                 <img src="../static/images/wow-logo-white.png" alt="">
             </div>
             <div class="container login-form-div">
-                <form class="login-form" action="/action_page.php" method="post">
+                <form class="login-form" method="post" id="form">
                      <div class="container login-form-container">
-                        <input class="input-tag" type="username" placeholder="username" name="uname" required>
-                        <select name="uname" id="users">
-                            <option value="seller">Seller</option>
-                            <option value="buyer">Buyer</option>
-                        </select>
-                        <input class="input-tag" type="email" placeholder="email" name="email" required>
+                        <input class="input-tag" type="username" placeholder="username" name="uname" required id="name">
+                        <input class="input-tag" type="email" placeholder="email" name="email" required id="email">
                         <input class="input-tag" type="password" placeholder="password" name="password" required>
-                        <input class="input-tag" type="password" placeholder="password2" name="password2" required>
-                        <input class="button input-button" type="submit" value="Signup">
+                        <input class="input-tag" type="password" placeholder="confirm password" name="password2" required>
+                        <input class="button input-button" type="submit" value="Signup" id="submit">
+                        <p style="color: rgb(210, 51, 51);" class="error-text" id="Status"></p>
                     </div>
                 </form>
                 <div class="container signup-option">
-                    <p class="signup-text">Already an account</p>
+                    <p class="signup-text">Create new account</p>
                     <a href="/login" class="button signup-button">Login</a>
+                </div>
+                <div class="container signup-option">
+                    <a class="button signup-button" href="/">Back to homepage</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!--Script for user api-->
+    <script>
+        function checkUrl()
+        {
+            if (window.location.href.indexOf('?email=') > 0) {
+                document.getElementById("Status").innerText="User Already exists"
+        }
+        }
+        window.onload = checkUrl();
+        let v1 = document.getElementById('name');
+        let v2 = document.getElementById('email');
+        let v3="User already exits"
+        $(document).ready(function(){
+            $("#submit").on('click', function(e){
+                var formdata = $("#form").serializeArray();
+                var data = {};
+                $(formdata ).each(function(index, obj){
+                    data[obj.name] = obj.value;
+                });
+                if(data.password!=data.password2){
+                    document.getElementById("Status").innerHTML="Password doesn't match"
+                   e.preventDefault()
+                   return
+                }
+                data=JSON.stringify(data)
+                $.ajax({
+                    url: '/api/User',
+                    type : "POST",
+                    data : data,
+                    dataType : 'json',
+                    contentType: "application/json; charset=utf-8",
+    
+                    success : function(result) {
+                        console.log(result)
+                        if(result.error){
+                            
+                            window.location.href = '/signup?email='+2+'&name='+v1.value;
+                        }else{
+                            window.location = '/login'
+                        }
+                    },
+                    error: function(xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    }
+                })
+    
+            });
+        });
+        </script>
+    
+
 </body>
 </html>
+

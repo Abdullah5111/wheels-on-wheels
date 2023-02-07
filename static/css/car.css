@@ -65,7 +65,8 @@
 /* Ad section ******************************************************************************************************************* */
 
 .ad-container{
-    height: 52%;
+    padding: 30px 0px;
+    height: 56%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }

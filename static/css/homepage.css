@@ -37,6 +37,12 @@
 
 .navbar-logo-div img{
     height: 50px;
+
+    transition: filter 0.5s;
+}
+
+.navbar-logo-div img:hover{
+    filter: brightness(60%);
 }
 
 .navbar-buttons{
@@ -87,7 +93,8 @@
 }
 
 .slideshow-heading-2{
-    font-size: 30px;
+    font-size: 36px;
+    letter-spacing: 1px;
 }
 
 .dashboard-button{
@@ -127,6 +134,7 @@
 }
 
 .dashboard-button-link{
+    margin-top: 10px;
     color: #FDFDFF !important;
     font-size: 18px;
     padding: 10px 30px;
@@ -230,17 +238,13 @@
 .ads-container{
     padding: 10px 60px;
     display: grid;
-    gap: 60px;
     grid-template-columns: repeat(4, 1fr);
     margin: 20px;
 }
 
 .ad{
     padding: 16px;
-    
-    border-bottom: 2px solid #62929E;
-    border-right: 2px solid #62929E;
-    border-radius: 0px 0px 22px 0px;
+    border-right: 2px solid #1320275e;
 }
 
 .car-data{
@@ -257,7 +261,7 @@
 }
 
 .ad-image img{
-    border: 2px solid #132027;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 16px 0px;
     height: 220px;
     width: 100%;
     object-fit: cover;
@@ -266,14 +270,6 @@
 .specs p{
     padding-left: 10px;
     border-left: 4px solid #62929E;
-    background-color: #62929e00;
-
-    transition: background-color 0.3s, color;
-}
-
-.specs p:hover{
-    background-color: #62929e;
-    color: #FDFDFF;
 }
 
 .buy-button-div{
@@ -285,6 +281,7 @@
 .buy-button{
     text-align: center;
     color: #62929E;
+    letter-spacing: 1px;
     font-size: 18px;
     padding: 6px 14px;
     border-top: 2px solid #62929E;
@@ -516,7 +513,6 @@
 .footer-div-4 p{
     margin: 0;
 }
-
 
 @media (min-width: 800px) { 
     .footer-div{ grid-template-columns: repeat(4, 1fr); }

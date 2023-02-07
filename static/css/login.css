@@ -53,9 +53,9 @@ input[type=password] {
     font-size: 18px;
     color: #132027;
     letter-spacing: 1px;
-    margin: 8px 0;
     outline: none;
     display: inline-block;
+    margin: 8px 0;
     box-sizing: border-box;
 }
 

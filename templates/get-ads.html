@@ -15,6 +15,9 @@
     <!-- Bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+      
     <style>
         body {
             font-family: "Montserrat", sans-serif;
@@ -70,11 +73,17 @@
         </div>
     </section>
 
-    <section class="ads">
+    <section id="filter-section" class="filter-section container">
+        <input type="text" name="" id="company" placeholder="Company">
+        <input type="text" name="" id="model" placeholder="Model">
+        <input id="search" type="button" value="Search">
+    </section>
+
+    <section id="ads" class="ads">
         <div class="ads-heading">
             <h2><strong>Explore Cars</strong></h2>
         </div>
-        <div class="ads-container">
+        <div id="ads-container" class="ads-container">
             {% for ad in context %}
                 <div class="ad">
                     <div class="ad-image-container container sub-container">
@@ -164,5 +173,65 @@
             </div>
         </div>
     </section>
+
+    <script>
+        $("#search").click(function() {
+            var company = $("#company").val().toLowerCase();
+            var model = $("#model").val().toLowerCase();
+            $.ajax({
+                    url: '/api/ads',
+                    type : "GET",
+                    dataType : 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success : function(result) {
+                        var temp = [];
+                        result.forEach(res => {
+                            var comp = res.company.toLowerCase();
+                            var mod = res.model.toLowerCase();
+                            if(comp.includes(company) && mod.includes(model)){
+                                temp.push(res);
+                            }
+                        })
+                        
+                        if(temp.length > 0){
+                            const container = document.querySelector("#ads-container");
+                            container.innerHTML = "";
+
+                            temp.forEach(res => {
+                                const ad_div = `<div class="ad">
+                                                    <div class="ad-image-container container sub-container">
+                                                        <img src=${res.image1} alt="car-image">
+                                                    </div>
+                                                    <div class="container">
+                                                        <div class="specs-points-container">
+                                                            <p class="company"><strong>Company </strong>${res.company}</p>
+                                                            <p class="model"><strong>Model </strong>${res.model}</p>
+                                                            <p class="price"><strong>Price </strong>${res.price}</p>
+                                                            <p class="registered_year"><strong>Registeration Year </strong>${res.registered_year}</p>
+                                                            <p class="registered_loc"><strong>Registered Location </strong>${res.registered_loc}</p>
+                                                            <p class="current_loc"><strong>Current Location </strong>${res.current_loc}</p>
+                                                            <p class="engine_cap"><strong>Engine Capacity </strong>${res.engine_cap}</p>
+                                                            <p class="km_driven"><strong>KM Driven </strong>${res.km_driven}</p>
+                                                            <p class="transmission"><strong>Transmission </strong>${res.transmission}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-form-container sub-container">
+                                                        <form action="/car", method="post">
+                                                            <input style="display: none;" value=${res._id.$oid} name="id"></input>
+                                                            <input style="display: none;" value=${res.creator} name="creator"></input>
+                                                            <div class="buy-button-div container">
+                                                            <input type="submit" class="buy-button" value="Contact Seller">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>`
+
+                                container.insertAdjacentHTML("beforeend", ad_div);
+                            });
+                        }                   
+                    }
+                });
+            });
+    </script>
 </body>
 </html>

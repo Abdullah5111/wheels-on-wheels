@@ -243,7 +243,7 @@
 }
 
 .ad{
-    padding: 16px;
+    padding: 26px;
     border-right: 2px solid #1320275e;
 }
 
@@ -267,35 +267,37 @@
     object-fit: cover;
 }
 
+.specs{
+    margin-top: 20px;
+}
+
 .specs p{
     padding-left: 10px;
     border-left: 4px solid #62929E;
 }
 
-.buy-button-div{
-    margin-top: 10px;
+.container{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-.buy-button{
-    text-align: center;
-    color: #62929E;
-    letter-spacing: 1px;
+.buy-button-div input{
+    margin-top: 10px;
+    padding: 6px 30px;
     font-size: 18px;
-    padding: 6px 14px;
-    border-top: 2px solid #62929E;
-    border-bottom: 2px solid #62929E;
-    border-radius: 10px;
-    text-decoration: none;
+    background-color: #62929e00;
+    border: 2px solid #62929E;
+    color: #62929E;
 
-    transition: padding 0.5s;
+    transition: background-color 0.5s;
 }
 
-.buy-button:hover{
-    text-decoration: none;
-    color: #62929E;
-    padding: 6px 24px;
+.buy-button-div input:hover{
+    cursor: pointer;
+    color: #FDFDFF;
+    background-color: #62929E;
 }
 
 /* brands***************************************************************************************************************** */
@@ -488,6 +490,12 @@
 
 .social-logo{
     height: 24px;
+    
+    transition: filter 0.5s;
+}
+
+.social-logo:hover{
+    filter: brightness(50%);
 }
 
 .contact-label{

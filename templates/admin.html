@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+    <style>
+        body {
+        font-family: "Montserrat", sans-serif;
+        }
+
+        .container{
+            height: 700px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p style="letter-spacing: 1px;">{{msg}}</p>
+        <form action="/admin-success", method="post">
+            <input style="width: 400px; padding: 6px 10px; font-size: 18px; letter-spacing: 1px;" type="password" name="password" placeholder="Admin password"><br>
+            <input style="width: 424px; padding: 6px 4px; font-size: 18px; letter-spacing: 1px; margin-top: 20px;" type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>

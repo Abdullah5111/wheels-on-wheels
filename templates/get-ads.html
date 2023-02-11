@@ -24,37 +24,31 @@
         }
     </style>
     <script>
-        function checkSession()
-            {
-                var obj=(window.localStorage.getItem('usr'));
-                console.log(obj)
-                if(obj==null)
-                {
-                                $("#Login").show();
-                                $("#signup").show();
-                                $("#LogOut").hide();
-                }
-                else
-                {
-                            $(document).ready(function(e)
-                        {
-                            $("#Login").hide();
-                            $("#signup").hide();
-                            $("#LogOut").show();
-                        })
-                }
+        function checkSession(){
+            var obj=(window.localStorage.getItem('usr'));
+            if(obj==null){
+                $("#Login").show();
+                $("#signup").show();
+                $("#LogOut").hide();
             }
-            function logout(e)
-                    {
-                        e.preventDefault();
-                        window.localStorage.clear();
-                        $("#Login").show();
-                        $("#signup").show();
-                        $("#LogOut").hide();
-                    }
+            else{
+                $(document).ready(function(e){
+                    $("#Login").hide();
+                    $("#signup").hide();
+                    $("#LogOut").show();
+                })
+            }
+            }
+            function logout(e){
+                e.preventDefault();
+                window.localStorage.clear();
+                $("#Login").show();
+                $("#signup").show();
+                $("#LogOut").hide();
+            }
     </script>
-</head onload="javascript:checkSession()">
-<body>
+</head >
+<body onload="javascript:checkSession()">
     <section class="hero-section">
         <div class="hero-container">
             <div class="navbar-holder">    
@@ -228,7 +222,43 @@
 
                                 container.insertAdjacentHTML("beforeend", ad_div);
                             });
-                        }                   
+                        }
+                        else{
+                            const container = document.querySelector("#ads-container");
+                            container.innerHTML = "";
+
+                            result.forEach(res => {
+                                const ad_div = `<div class="ad">
+                                                    <div class="ad-image-container container sub-container">
+                                                        <img src=${res.image1} alt="car-image">
+                                                    </div>
+                                                    <div class="container">
+                                                        <div class="specs-points-container">
+                                                            <p class="company"><strong>Company </strong>${res.company}</p>
+                                                            <p class="model"><strong>Model </strong>${res.model}</p>
+                                                            <p class="price"><strong>Price </strong>${res.price}</p>
+                                                            <p class="registered_year"><strong>Registeration Year </strong>${res.registered_year}</p>
+                                                            <p class="registered_loc"><strong>Registered Location </strong>${res.registered_loc}</p>
+                                                            <p class="current_loc"><strong>Current Location </strong>${res.current_loc}</p>
+                                                            <p class="engine_cap"><strong>Engine Capacity </strong>${res.engine_cap}</p>
+                                                            <p class="km_driven"><strong>KM Driven </strong>${res.km_driven}</p>
+                                                            <p class="transmission"><strong>Transmission </strong>${res.transmission}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-form-container sub-container">
+                                                        <form action="/car", method="post">
+                                                            <input style="display: none;" value=${res._id.$oid} name="id"></input>
+                                                            <input style="display: none;" value=${res.creator} name="creator"></input>
+                                                            <div class="buy-button-div container">
+                                                            <input type="submit" class="buy-button" value="Contact Seller">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>`
+
+                                container.insertAdjacentHTML("beforeend", ad_div);
+                            });
+                        }                 
                     }
                 });
             });

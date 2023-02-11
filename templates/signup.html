@@ -34,7 +34,7 @@
                     </div>
                 </form>
                 <div class="container signup-option">
-                    <p class="signup-text">Create new account</p>
+                    <p class="signup-text">Already an account</p>
                     <a href="/login" class="button signup-button">Login</a>
                 </div>
                 <div class="container signup-option">
@@ -44,13 +44,12 @@
         </div>
     </section>
 
-    <!--Script for user api-->
     <script>
         function checkUrl()
         {
             if (window.location.href.indexOf('?email=') > 0) {
                 document.getElementById("Status").innerText="User Already exists"
-        }
+            }
         }
         window.onload = checkUrl();
         let v1 = document.getElementById('name');
@@ -77,24 +76,21 @@
                     contentType: "application/json; charset=utf-8",
     
                     success : function(result) {
-                        console.log(result)
                         if(result.error){
-                            
                             window.location.href = '/signup?email='+2+'&name='+v1.value;
-                        }else{
+                        }
+                        else{
                             window.location = '/login'
                         }
                     },
                     error: function(xhr, resp, text) {
                         console.log(xhr, resp, text);
                     }
-                })
-    
+                })   
             });
         });
-        </script>
+    </script>
     
-
 </body>
 </html>
 

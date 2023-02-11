@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     padding: 0px 14px;
+    margin-bottom: 40px;
 }
 
 .navbar-container{
@@ -78,7 +79,7 @@
 /* Post Ad *************************************************************************************************************** */
 
 .ad-post-button-div{
-    height: 300px;
+    height: 100px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -107,6 +108,14 @@
 
 .ads{   
     padding: 40px 100px;
+}
+
+.status-heading h2{
+    color: #97c7d3;
+    font-size: 26px;
+    padding: 20px;
+    letter-spacing: 2px;
+    text-align: center;
 }
 
 .ads-heading h2{
@@ -152,8 +161,12 @@
     text-decoration: none;
 }
 
-.remove-button-div{
+.remove-link{
+    margin-right: 50px;
     margin-top: 30px;
+}
+
+.remove-button-div{
     padding: 10px 40px;
     font-size: 18px;
     background-color: #62929e00;
@@ -207,98 +220,6 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
-
-/* .ads{   
-    padding: 40px 100px;
-}
-.ads-heading h2{
-    color: #62929E;
-    margin: 0;
-    padding: 20px;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-.ads-container{
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(1, 1fr);
-    margin: 0px 20px;
-}
-
-.ad{
-    padding: 16px;
-    background-image: linear-gradient(to right, #62929E,#62929e00);
-}
-
-.car-data{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.ad-image{
-    display: flex;
-    justify-content:center;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.ad-image img{
-    border-radius: 2px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 36px 0px;
-    height: 300px;
-    width: 400px;
-    object-fit: cover;
-}
-
-.specs{
-    display: flex;
-    justify-content: center;
-}
-
-.specs-points{
-    width: 400px;
-}
-
-.specs p{
-    padding-left: 10px;
-    border-left: 4px solid #62929E;
-    background-color: #62929e00;
-
-    transition: background-color 0.3s, color;
-}
-
-.specs p:hover{
-    background-color: #62929e;
-    color: #FDFDFF;
-}
-
-.buy-button-div{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.buy-button{
-    text-align: center;
-    color: #FDFDFF;
-    font-size: 18px;
-    padding: 6px 24px;
-    border-top: 2px solid #FDFDFF;
-    border-bottom: 2px solid #FDFDFF;
-    border-radius: 10px;
-    text-decoration: none;
-
-    transition: padding 0.5s;
-}
-
-.buy-button:hover{
-    text-decoration: none;
-    color: #FDFDFF;
-    padding: 6px 34px;
-} */
 
 /* footer***************************************************************************************************************** */
 
@@ -373,7 +294,6 @@
 .footer-div-4 p{
     margin: 0;
 }
-
 
 @media (min-width: 800px) { 
     .footer-div{ grid-template-columns: repeat(4, 1fr); }

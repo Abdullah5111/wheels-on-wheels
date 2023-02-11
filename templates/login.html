@@ -11,6 +11,7 @@
 
     <!-- Own css -->
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+
     <!-- script for signup api-->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
@@ -39,15 +40,15 @@
             </div>
         </div>
     </section>
-     <!--Script for Login Api-->
-     <script>
+    
+    <script>
         function checkUrl()
-            {
-                if (window.location.href.indexOf('?email=') > 0) {
-                    document.getElementById("Status").innerText="User doesn't exist"
-                }
+        {
+            if (window.location.href.indexOf('?email=') > 0) {
+                document.getElementById("Status").innerText="User doesn't exist"
             }
-            window.onload = checkUrl();
+        }
+        window.onload = checkUrl();
         $(document).ready(function(){
             $("#submit").on('click', function(e){
                 var formdata = $("#form").serializeArray();
@@ -56,14 +57,12 @@
                     data[obj.name] = obj.value;
                 });
                 var strname=data['name'];
-                var strpassword=data['password']; 
-                console.log(strname)
+                var strpassword=data['password'];
                 data=JSON.stringify(data)
-                console.log(data)
                 $.ajax({
-                    url: '/api/Login', // url where to submit the request
-                    type : "POST", // type of action POST || GET
-                    data : data, // post data || get data
+                    url: '/api/Login',
+                    type : "POST",
+                    data : data,
                     dataType : 'json',
                     contentType: "application/json; charset=utf-8",
                     success : function(result) {
@@ -77,8 +76,6 @@
                             console.log(obj.name);
                             console.log(window.localStorage.getItem('usr'))
                             window.location = '/seller-dashboard?nme='+name;
-                            // window.localStorage.setItem('usr',JSON.stringify(result))\
-                            // JSON.parse(window.localStorage.getItem('usr'))
                         }
                     },
                     error: function(xhr, resp, text) {
@@ -87,6 +84,6 @@
                 })
             });
         });
-        </script>
+    </script>
 </body>
 </html>

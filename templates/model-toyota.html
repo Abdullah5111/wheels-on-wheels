@@ -17,8 +17,8 @@
 
     <style>
         body {
-        font-family: "Montserrat", sans-serif;
-    }
+            font-family: "Montserrat", sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -47,12 +47,12 @@
             <h2>Toyota</h2>
         </div>
         <div class="models-container">
-            {%for i in range (6)%}
+            {%for i in range (5)%}
                 <div class="model-container">
-                    <img src={{urls[i]}} alt="">
+                    <img src={{urls[0][i]}} alt="">
                     <div class="model-info">
-                        <p class="model-name">Land Cruiser</p>
-                        <p class="price">Staring price Rs 12,300,000</p>
+                        <p class="model-name">{{urls[1][i]}}</p>
+                        <p class="price">{{urls[2][i]}}</p>
                     </div>
                 </div>
             {%endfor%}
@@ -68,11 +68,11 @@
             </div>
             <div class="footer-inner-div footer-div-2">
                 <div class="footer-links">
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">Post an ad</a>
-                    <a href="#" class="footer-link">Cars store</a>
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">About us</a>
+                    <a href="/about-us" class="footer-link">About us</a>
+                    <a href="/seller-dashboard" class="footer-link">Post an ad</a>
+                    <a href="/get-ads" class="footer-link">Cars store</a>
+                    <a href="/signup" class="footer-link">Create Account</a>
+                    <a href="#" class="footer-link">To the top</a>
                 </div>
             </div>
             <div class="footer-inner-div footer-div-3">
@@ -92,13 +92,13 @@
                         <p>abc123@gmail.com</p>
                     </div>
                     <div class="social-box">
-                        <a href="#" class="social-link">
+                        <a href="https://www.facebook.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/facebook.png" alt="facebook-logo">
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://www.instagram.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/instagram.png" alt="facebook-logo">
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://www.linkedin.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/linkedin.png" alt="facebook-logo">
                         </a>
                     </div>

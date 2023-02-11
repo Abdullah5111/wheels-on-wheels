@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>     
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+    <script>
+        function checkSession(){
+            $.ajax({
+                url: '/api/ads',
+                type : "GET",
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+                success : function(result){
+
+                    var temp = [];
+                    console.log(result)
+                    result.forEach(res => {
+                        if(res.status == 'not-approved'){
+                            temp.push(res);
+                        }
+                    })
+
+                    const container = document.querySelector("#cars-ads");
+
+                    temp.forEach(res => {
+                        const ad_div = `<div id="car-ad" class="car-ad">            
+                                        <img style="height: 280px; width: 340px;"  src=${res.image1} alt="">
+                                        <img style="height: 280px; width: 340px;"  src=${res.image2} alt="">
+                                        <img style="height: 280px; width: 340px;"  src=${res.image3} alt="">
+                                        <img style="height: 280px; width: 340px;"  src=${res.image4} alt="">
+                                        <p><strong>ID </strong></p>
+                                        <p style="color: red;" id="car_ad_id">${res._id.$oid}</p>
+                                        <p><strong>Creator </strong>${res.creator}</p>
+                                        <p><strong>Company </strong>${res.company}</p>
+                                        <p><strong>Model </strong>${res.model}</p>
+                                        <p><strong>Price </strong>${res.price}</p>
+                                        <p><strong>Current Location </strong>${res.current_loc}</p>
+                                        <p><strong>Engine Capacity </strong>${res.engine_cap}</p>
+                                        <p><strong>KM Driven </strong>${res.km_driven}</p>
+                                        <p><strong>Registered Location </strong>${res.registered_loc}</p>
+                                        <p><strong>Registered Year </strong>${res.registered_year}</p>
+                                        <p><strong>Transmission </strong>${res.transmission}</p>
+                                        <a href="/admin-dashboard" id="approve-car">Approve Ad</a>
+                                        <br><br><br>
+                                    </div>`
+                        container.insertAdjacentHTML("beforeend", ad_div);
+                    })                    
+                }
+            }
+        )}
+        
+        $.ajax({
+            url: '/api/spare-parts',
+            type : "GET",
+            dataType : 'json',
+            contentType: "application/json; charset=utf-8",
+            success : function(result){
+
+                var temp = [];
+                console.log(result)
+                result.forEach(res => {
+                    if(res.status == 'not-approved'){
+                        temp.push(res);
+                    }
+                })
+
+                const container = document.querySelector("#spare-parts-ads");
+
+                temp.forEach(res => {
+                    const ad_div = `<div id="spare-part-ad" class="spare-part-ad">            
+                                    <img style="height: 280px; width: 340px;"  src=${res.image} alt="">
+                                    <p><strong>ID </strong></p>
+                                    <p style="color: red;" id="spare_part_ad_id">${res._id.$oid}</p>
+                                    <p><strong>Creator </strong>${res.creator}</p>
+                                    <p><strong>Price </strong>${res.price}</p>
+                                    <p><strong>Location </strong>${res.location}</p>
+                                    <a href="/admin-dashboard" id="approve-spare-part">Approve Ad</a>
+                                    <br><br><br>
+                                </div>`
+                    container.insertAdjacentHTML("beforeend", ad_div);
+                })                    
+            }
+        }
+        )
+    </script>
+
+    <style>
+        body{
+            padding: 0px;
+            font-family: "Montserrat", sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .main-heading{
+            color: white;
+            margin: 0;
+            padding: 20px;
+            font-size: 32px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            background-color: #62929E;
+            margin-bottom: 40px;
+        }
+
+        .sub-heading{
+            color: white;
+            margin: 0;
+            padding: 20px;
+            font-size: 28px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            background-color: #8ac0cd;
+            margin-bottom: 20px;
+        }
+
+        a{
+            letter-spacing: 1px;
+            text-decoration: none; 
+            font-size: 16px;
+            color: #62929E;
+
+            padding: 6px 8px;
+            border: 2px solid #62929E;
+        }
+
+        a:hover{
+            color: white;
+            background-color: #62929E;
+        }
+    </style>
+
+</head>
+<body onload="javascript:checkSession()">
+    <p class="main-heading">Admin dashboard</p>
+
+    <p class="sub-heading">Cars</p>
+    <div id="cars-ads" class="cars-ads">
+
+    </div>
+
+    <p class="sub-heading">Spare Parts</p>
+    <div id="spare-parts-ads" class="spare-parts-ads">
+
+    </div>
+
+    <script>
+        $(document).on("click", "#approve-car", function(event){
+            var ad_id = document.getElementById("car_ad_id").innerHTML
+            ad_id = ad_id.substring()
+            console.log(ad_id);
+            var data = {"status": "approved"},
+            data=JSON.stringify(data);
+            $.ajax({
+                type: 'PUT',
+                url: '/api/ad/' + ad_id,
+                data: data,
+                dataType : 'json',
+                contentType: "application/json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        });
+        
+        $(document).on("click", "#approve-spare-part", function(event){
+            var ad_id = document.getElementById("spare_part_ad_id").innerHTML
+            ad_id = ad_id.substring()
+            console.log(ad_id);
+            var data = {"status": "approved"},
+            data=JSON.stringify(data);
+            $.ajax({
+                type: 'PUT',
+                url: '/api/spare-part/' + ad_id,
+                data: data,
+                dataType : 'json',
+                contentType: "application/json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

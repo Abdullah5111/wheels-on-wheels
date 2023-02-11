@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Wheels on wheels</title>
+
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
@@ -15,56 +16,69 @@
     <!--   Added     -->
     <script>
         function checkSession()
+        {
+            var obj=(window.localStorage.getItem('usr'));
+        
+            if(obj==null)
             {
-                var obj=(window.localStorage.getItem('usr'));
-                if(obj==null)
-                {
-                    $("#Login").show();
-                    $("#signup").show();
-                    $("#LogOut").hide();
-                }
-                else
-                {
-                    $(document).ready(function(e)
-                    {
-                        $("#Login").hide();
-                        $("#signup").hide();
-                        $("#LogOut").show();
-                    })
-                }
-            }
-        function logout(e)
-            {
-                e.preventDefault();
-                window.localStorage.clear();
                 $("#Login").show();
                 $("#signup").show();
                 $("#LogOut").hide();
             }
-        function forcetoLogin(e)
+            else
             {
-                var obj=(window.localStorage.getItem('usr'));
-                if(obj==null)
+                $(document).ready(function(e)
                 {
-                    e.preventDefault();
-                    window.location='/signup'
-                }
-                else
-                {
-                    $(document).ready(function(e)
-                    {
-                        $("#Login").hide();
-                        $("#signup").hide();
-                        $("#LogOut").show();
-                    })
-                }
+                    $("#Login").hide();
+                    $("#signup").hide();
+                    $("#LogOut").show();
+                })
             }
+        }
+        function logout(e)
+        {
+            e.preventDefault();
+            window.localStorage.clear();
+            $("#Login").show();
+            $("#signup").show();
+            $("#LogOut").hide();
+        }
+        function forcetoLogin(e)
+        {
+            var obj=(window.localStorage.getItem('usr'));
+            if(obj==null)
+            {
+                e.preventDefault();
+                window.location='/signup'
+            }
+            else
+            {
+                $(document).ready(function(e)
+                {
+                    $("#Login").hide();
+                    $("#signup").hide();
+                    $("#LogOut").show();
+                })
+            }
+        }
+        function CheckLogin(e)
+        {
+            var obj=window.localStorage.getItem('usr');
+            if(obj==null)
+            {
+                e.preventDefault();
+                window.location='/signup';
+            }
+            else{
+                window.location='/car'
+            }
+        }
     </script>
 
     <style>
         body {
-        font-family: "Montserrat", sans-serif;
-    }
+            font-family: "Montserrat", sans-serif;
+        }
     </style>
 </head>
 
@@ -89,17 +103,17 @@
                 <div class="welcome">
                     <h1 class="slideshow-heading-1">Welcome to</h1>
                     <h1 class="slideshow-heading-2">Wheels on wheels</h1>
-                </div>      
+                </div>
                 <div class="dashboard-buttons-container">
                     <div class="dashboard-button">
                         <div class="post-car-div">      
-                            <h2 class="post-car-heading">Want to sell a car?</h2>
-                            <a class="dashboard-button-link post-car-button" href="/seller-dashboard" onclick="forcetoLogin(event)" >Post an ad</a>
+                            <h2 class="post-car-heading">Want to sell</h2>
+                            <a class="dashboard-button-link post-car-button" href="/seller-dashboard" onclick="forcetoLogin(event)" >Post ad</a>
                         </div>
                     </div>
                     <div class="dashboard-button">
                         <div class="cars-store-div">
-                            <h2 class="cars-store-heading">Explore the cars</h2>
+                            <h2 class="cars-store-heading">Explore cars</h2>
                             <a class="dashboard-button-link cars-store-button" href="/get-ads">Cars store</a>
                         </div>
                     </div>
@@ -145,12 +159,12 @@
                     </div>
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Secure and safe transactions
+                            &#9675 Simple usage
                         </p>
                     </div>
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Secure and safe transactions
+                            &#9675 Security and safety
                         </p>
                     </div>
                 </div>
@@ -162,22 +176,22 @@
                 <div class="about-right-points">
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Lorem ipsum dolor sit.
+                            &#9675 Variaty
                         </p>
                     </div>
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Lorem, ipsum dolor.
+                            &#9675 Guarenty
                         </p>
                     </div>
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Lorem ipsum dolor sit amet.
+                            &#9675 Excellence
                         </p>
                     </div>
                     <div class="point-div">
                         <p class="about-left-point">
-                            &#9675 Lorem ipsum dolor sit amet.
+                            &#9675 Variaty
                         </p>
                     </div>
                 </div>
@@ -201,9 +215,15 @@
                             <p class="model"><strong>Model </strong>{{ad.model}}</p>
                             <p class="price"><strong>Price </strong>{{ad.price}}</p>
                         </div>
-                    </div>           
+                    </div>
                     <div class="buy-button-div">
-                        <a href="#" class="buy-button"><strong>Buy Now</strong></a>
+                        <form action="/car", method="post">
+                            <input style="display: none;" value={{ad.id}} name="id"></input>
+                            <input style="display: none;" value={{ad.creator}} name="creator"></input>
+                            <div class="buy-button-div container">
+                                <input type="submit" class="buy-button" value="Contact Seller">
+                            </div>
+                        </form>
                     </div>
                 </div> 
             {% endfor %}
@@ -223,49 +243,49 @@
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card havel-card">
+                <a href="/model-haval" class="brand-card havel-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             Havel
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card honda-card">
+                <a href="/model-honda" class="brand-card honda-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             Honda
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card hyundai-card">
+                <a href="/model-hyundai" class="brand-card hyundai-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             Hyundai
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card KIA-card">
+                <a href="/model-kia" class="brand-card KIA-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             KIA
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card MG-card">
+                <a href="/model-MG" class="brand-card MG-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             MG
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card peugeot-card">
+                <a href="/model-pugeot" class="brand-card peugeot-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             Peugeot
                         </p>
                     </div>
                 </a>
-                <a href="#" class="brand-card suzuki-card">
+                <a href="model-suzuki" class="brand-card suzuki-card">
                     <div class="brand-card-div">
                         <p class="brand-label">
                             Suzuki

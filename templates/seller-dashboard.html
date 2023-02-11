@@ -21,6 +21,7 @@
         <!--   Added     -->
         <script>
             var temp2 = [];
+            var counter = 0;
             function temp(){
                 var obj=JSON.parse(window.localStorage.getItem('usr'));
                 $.ajax({
@@ -34,52 +35,131 @@
                         }
                         else{
                             var obj=JSON.parse(window.localStorage.getItem('usr'));
-                            var name=obj.name;
+                            var name=obj[0].name;
 
                             for (let i = 0; i < result.length; i++) {
-                                if (result[i].creator == name){
+                                if (result[i].creator == name  && result[i].status == "approved"){
                                     temp2.push(result[i])
+                                }
+                                else if(result[i].status == "not-approved"){
+                                    counter = counter + 1;
                                 }
                             }
 
                             const container = document.querySelector("#seller-ads");
 
+                            temp2 = temp2.reverse();
+                            if(counter > 0){
+                                const heading_div = `<div class="status-heading"><h2><strong>Some cars ads waiting for approval</strong></h2></div>` 
+                                container.insertAdjacentHTML("beforeend", heading_div);
+                            }
                             if(temp2.length > 0){
-                                const heading_div = `<div class="ads-heading"><h2><strong>Your Ads</strong></h2></div>`
+                                const heading_div = `<div class="ads-heading"><h2><strong>Your Cars Ads</strong></h2></div>`
                                 container.insertAdjacentHTML("beforeend", heading_div);
 
                                 temp2.forEach(res => {
 
-                            const ad_div = `<div class="ad">
-                                                <div class="ad-image-container container sub-container">
-                                                    <img src=${res.image1} alt="car-image">                                         
-                                                </div>
-                                                <div class="container">
-                                                    <div class="specs-points-container">
-                                                        <p class="company"><strong>Company </strong>${res.company}</p>
-                                                        <p class="model"><strong>Model </strong>${res.model}</p>
-                                                        <p class="price"><strong>Price </strong>${res.price}</p>
-                                                        <p class="registered_year"><strong>Registeration Year </strong>${res.registered_year}</p>
-                                                        <p class="registered_loc"><strong>Registered Location </strong>${res.registered_loc}</p>
-                                                        <p class="current_loc"><strong>Current Location </strong>${res.current_loc}</p>
-                                                        <p class="engine_cap"><strong>Engine Capacity </strong>${res.engine_cap}</p>
-                                                        <p class="km_driven"><strong>KM Driven </strong>${res.km_driven}</p>
-                                                        <p class="transmission"><strong>Transmission </strong>${res.transmission}</p>
-                                                        <p style="display: none;" id="id" class="transmission"><strong>ID </strong>${res._id.$oid}</p>
+                                const ad_div = `<div class="ad">
+                                                    <div class="ad-image-container container sub-container">
+                                                        <img src=${res.image1} alt="car-image">                                         
                                                     </div>
-                                                </div>
-                                                <a class="remove-link" href="/seller-dashboard" id="buy" class="buy-button">
-                                                    <div class="remove-button-div container">
-                                                        <p>Remove Ad</p>
+                                                    <div class="container">
+                                                        <div class="specs-points-container">
+                                                            <p class="company"><strong>Company </strong>${res.company}</p>
+                                                            <p class="model"><strong>Model </strong>${res.model}</p>
+                                                            <p class="price"><strong>Price </strong>${res.price}</p>
+                                                            <p class="registered_year"><strong>Registeration Year </strong>${res.registered_year}</p>
+                                                            <p class="registered_loc"><strong>Registered Location </strong>${res.registered_loc}</p>
+                                                            <p class="current_loc"><strong>Current Location </strong>${res.current_loc}</p>
+                                                            <p class="engine_cap"><strong>Engine Capacity </strong>${res.engine_cap}</p>
+                                                            <p class="km_driven"><strong>KM Driven </strong>${res.km_driven}</p>
+                                                            <p class="transmission"><strong>Transmission </strong>${res.transmission}</p>
+                                                            <p style="display: none;" id="car_id" class="transmission"><strong>ID </strong>${res._id.$oid}</p>
+                                                        </div>
                                                     </div>
-                                                </a>
-                                            </div>`
+                                                    <a class="remove-link remove-car-link" href="/seller-dashboard" id="buy" class="buy-button">
+                                                        <div class="remove-button-div container">
+                                                            <p>Remove Ad</p>
+                                                        </div>
+                                                    </a>
+                                                </div>`
 
                                 container.insertAdjacentHTML("beforeend", ad_div);
                                 });
                             }
                             else{
-                                const heading_div = `<div class="ads-heading"><h2><strong>No ad posted yet</strong></h2></div>` 
+                                const heading_div = `<div class="ads-heading"><h2><strong>No car ad posted yet</strong></h2></div>` 
+                                container.insertAdjacentHTML("beforeend", heading_div);
+                            }
+                        }
+                    },
+                    error: function(xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    }
+                })
+                temp2 = [];
+                counter = 0;
+                $.ajax({
+                    url: '/api/spare-parts',
+                    type : "GET",
+                    dataType : 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success : function(result) {
+                        if(result.error){
+                            window.location.href = '/login?email='+2;
+                        }
+                        else{
+                            temp2 = [];
+                            counter = 0;
+                            var obj=JSON.parse(window.localStorage.getItem('usr'));
+                            var name=obj[0].name;
+
+                            for (let i = 0; i < result.length; i++) {
+                                if (result[i].creator == name  && result[i].status == "approved"){
+                                    temp2.push(result[i])
+                                }
+                                else if(result[i].status == "not-approved"){
+                                    counter = counter + 1;
+                                }
+                            }
+
+                            const container = document.querySelector("#seller-ads");
+
+                            temp2 = temp2.reverse();
+                            if(counter > 0){
+                                const heading_div = `<div class="div-for-br"><br><br><div class="status-heading"><h2><strong>Some spare part ads waiting for approval</strong></h2></div></div>` 
+                                container.insertAdjacentHTML("beforeend", heading_div);
+                            }
+                            if(temp2.length > 0){
+                                const heading_div = `<div class="div-for-br"><br><br><div class="ads-heading"><h2><strong>Your Spare Parts Ads</strong></h2></div></div>`
+                                container.insertAdjacentHTML("beforeend", heading_div);
+
+                                temp2.forEach(res => {
+
+                                const ad_div = `<div class="ad">
+                                                    <div class="ad-image-container container sub-container">
+                                                        <img src=${res.image} alt="car-image">                                         
+                                                    </div>
+                                                    <div class="container">
+                                                        <div class="specs-points-container">
+                                                            <p class="company"><strong>Company </strong>${res.category}</p>
+                                                            <p class="price"><strong>Price </strong>${res.price}</p>
+                                                            <p style="display: none;" class="transmission"><strong>Transmission </strong>${res.location}</p>
+                                                            <p style="display: none;" id="spare_part_id" class="transmission"><strong>ID </strong>${res._id.$oid}</p>
+                                                        </div>
+                                                    </div>
+                                                    <a class="remove-link remove-spare-part-link" href="/seller-dashboard" id="buy" class="buy-button">
+                                                        <div class="remove-button-div container">
+                                                            <p>Remove Ad</p>
+                                                        </div>
+                                                    </a>
+                                                </div>`
+
+                                container.insertAdjacentHTML("beforeend", ad_div);
+                                });
+                            }
+                            else{
+                                const heading_div = `<div class="ads-heading"><h2><strong>No spare part ad posted yet</strong></h2></div>` 
                                 container.insertAdjacentHTML("beforeend", heading_div);
                             }
                         }
@@ -90,59 +170,59 @@
                 })
             }
             function checkSession()
+            {
+                temp();
+                var obj=(window.localStorage.getItem('usr'));
+                if(obj==null)
                 {
-                    temp();
-                    var obj=(window.localStorage.getItem('usr'));
-                    if(obj==null)
-                    {
-                        $("#Login").show();
-                        $("#signup").show();
-                        $("#LogOut").hide();
-                    }
-                    else
-                    {
-                        $(document).ready(function(e)
-                        {
-                            $("#Login").hide();
-                            $("#signup").hide();
-                            $("#LogOut").show();
-                        })
-                    }
+                    $("#Login").show();
+                    $("#signup").show();
+                    $("#LogOut").hide();
                 }
-                function logout(e)
-                        {
-                            e.preventDefault();
-                            window.localStorage.clear();
-                            window.location='/'
-                            $("#Login").show();
-                            $("#signup").show();
-                            $("#LogOut").hide();
-                        }
-                function forcetoLogin(e)
+                else
                 {
-                    var obj=(window.localStorage.getItem('usr'));
-                    if(obj==null)
+                    $(document).ready(function(e)
                     {
-                        e.preventDefault();
-                        window.location='/signup'
-                    }
-                    else
-                    {
-                        $(document).ready(function(e)
-                        {
-                            $("#Login").hide();
-                            $("#signup").hide();
-                            $("#LogOut").show();
-                        })
-                    }
+                        $("#Login").hide();
+                        $("#signup").hide();
+                        $("#LogOut").show();
+                    })
                 }
+            }
+            function logout(e)
+            {
+                e.preventDefault();
+                window.localStorage.clear();
+                window.location='/'
+                $("#Login").show();
+                $("#signup").show();
+                $("#LogOut").hide();
+            }
+            function forcetoLogin(e)
+            {
+                var obj=(window.localStorage.getItem('usr'));
+                if(obj==null)
+                {
+                    e.preventDefault();
+                    window.location='/signup'
+                }
+                else
+                {
+                    $(document).ready(function(e)
+                    {
+                        $("#Login").hide();
+                        $("#signup").hide();
+                        $("#LogOut").show();
+                    })
+                }
+            }
         
         </script>
 
         <style>
             body {
-            font-family: "Montserrat", sans-serif;
-        }
+                font-family: "Montserrat", sans-serif;
+            }
         </style>
     </head>
 <body onload="javascript:checkSession()">
@@ -161,48 +241,18 @@
                     </div>
                 </div>
             </div>
-            <div class="ad-post-button-div">  
-                     
-                <a href="/ad" onclick="forcetoLogin(event)" id="postAddButton">Post an ad</a>
+            <div class="ad-post-button-div">                    
+                <a href="/ad" onclick="forcetoLogin(event)" id="postAddButton">Post a car ad</a>
+            </div>
+            <div class="ad-post-button-div">                    
+                <a href="/spare-part-ad" onclick="forcetoLogin(event)" id="postAddButton">Post a spare part ad</a>
             </div>
         </div>
     </section>
 
-    <section id="seller-ads">
+    <section id="seller-ads">     
     </section>
-
-    <!-- <section class="ads">
-        <div class="ads-heading">
-            <h2><strong>Your Ads</strong></h2>
-        </div>
-        <div class="ads-container">
-            {% for ad in context %}
-                <div class="ad">
-                    <div class="ad-image-container container sub-container">
-                        <img src={{ad.image1}} alt="car-image">
-                    </div>
-                    <div class="container">
-                        <div class="specs-points-container">
-                            <p class="company"><strong>Company </strong>{{ad.company}}</p>
-                            <p class="model"><strong>Model </strong>{{ad.model}}</p>
-                            <p class="price"><strong>Price </strong>{{ad.price}}</p>
-                            <p class="registered_year"><strong>Registeration Year </strong>{{ad.registered_year}}</p>
-                            <p class="registered_loc"><strong>Registered Location </strong>{{ad.registered_loc}}</p>
-                            <p class="current_loc"><strong>Current Location </strong>{{ad.current_loc}}</p>
-                            <p class="engine_cap"><strong>Engine Capacity </strong>{{ad.engine_cap}}</p>
-                            <p class="km_driven"><strong>KM Driven </strong>{{ad.km_driven}}</p>
-                            <p class="transmission"><strong>Transmission </strong>{{ad.transmission}}</p>
-                        </div>
-                    </div>
-                    <a class="remove-link" href="/seller-dashboard" id="buy" class="buy-button">
-                        <div class="remove-button-div container">
-                            <p>Remove Ad</p>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    </section> -->
+    <br><br>
 
     <section class="footer-section">
         <div class="footer-div">
@@ -213,11 +263,11 @@
             </div>
             <div class="footer-inner-div footer-div-2">
                 <div class="footer-links">
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">Post an ad</a>
-                    <a href="#" class="footer-link">Cars store</a>
-                    <a href="#" class="footer-link">About us</a>
-                    <a href="#" class="footer-link">About us</a>
+                    <a href="/about-us" class="footer-link">About us</a>
+                    <a href="/seller-dashboard" class="footer-link">Post an ad</a>
+                    <a href="/get-ads" class="footer-link">Cars store</a>
+                    <a href="/signup" class="footer-link">Create Account</a>
+                    <a href="#" class="footer-link">To the top</a>
                 </div>
             </div>
             <div class="footer-inner-div footer-div-3">
@@ -237,13 +287,13 @@
                         <p>abc123@gmail.com</p>
                     </div>
                     <div class="social-box">
-                        <a href="#" class="social-link">
+                        <a href="https://www.facebook.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/facebook.png" alt="facebook-logo">
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://www.instagram.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/instagram.png" alt="facebook-logo">
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="https://www.linkedin.com/" class="social-link" target="_blank">
                             <img class="social-logo" src="../static/images/social/linkedin.png" alt="facebook-logo">
                         </a>
                     </div>
@@ -262,46 +312,35 @@
         </div>
     </section>
 
-
     <script>
-
-
-        $(document).on("click", ".remove-link", function(event){
-            var ad_id = $(this).closest('.ad').find('#id').text().split(" ").pop();
-            console.log(typeof(ad_id))
+        $(document).on("click", ".remove-car-link", function(event){
+            var ad_id = $(this).closest('.ad').find('#car_id').text().split(" ").pop();
             $.ajax({
                 type: 'DELETE',
                 url: '/api/ad/' + ad_id,
                 success: function(response){
-                    console.log(response);
+                    
                 },
                 error: function(error){
                     console.log(error);
                 }
             });
         });
-
-    </script>
-
-    <!-- <script>
-        $(document).ready(function(){
-            $(".buy-button").click(function(event){
-            console.log(",,,,,,,,,,")
-                var ad_id = $(this).closest('.ad').find('#id').text();
-                console.log(ad_id)
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/api/ad/' + ad_id,
-                    success: function(response){
-                        console.log(response);
-                    },
-                    error: function(error){
-                        console.log(error);
-                    }
-                });
+        
+        $(document).on("click", ".remove-spare-part-link", function(event){
+            var ad_id = $(this).closest('.ad').find('#spare_part_id').text().split(" ").pop();
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/spare-part/' + ad_id,
+                success: function(response){
+                    
+                },
+                error: function(error){
+                    console.log(error);
+                }
             });
         });
-    </script> -->
+    </script>
     
 </body>
 </html>

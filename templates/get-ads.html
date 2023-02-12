@@ -47,6 +47,14 @@
                 $("#LogOut").hide();
             }
     </script>
+    <script>
+        function login(e)
+                {
+                    e.preventDefault();
+                    window.location='/login?get-ads='+20;
+                }
+    </script>
+
 </head >
 <body onload="javascript:checkSession()">
     <section class="hero-section">
@@ -58,9 +66,9 @@
                     </div>
                     <div class="navbar-buttons">
                         <a href="about-us" >About</a>
-                        <a href="/login" id="Login">Login</a>
+                        <a href="/login" id="Login" onclick="login(event)">Login</a>
                         <a href="/signup" id="signup">Sign up</a>
-                        <a href="" id="LogOut" onclick="logout(event)">LogOut</a>
+                        <a href="" id="LogOut" onclick="logout(event)">Log out</a>
                     </div>
                 </div>
             </div>
@@ -101,9 +109,14 @@
                             <input style="display: none;" value={{ad.id}} name="id"></input>
                             <input style="display: none;" value={{ad.creator}} name="creator"></input>
                             <div class="buy-button-div container">
-                                <input type="submit" class="buy-button" value="Contact Seller">
+                                <input type="submit" class="buy-button" value="  Contact Seller  ">
                             </div>
                         </form>
+                        <a href="">    
+                            <div class="buy-button-div container">
+                                <input type="submit" class="buy-button" value="Book Inspection">
+                            </div>
+                        </a>
                     </div>
                 </div> 
             {% endfor %}

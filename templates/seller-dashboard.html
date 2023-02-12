@@ -142,7 +142,7 @@
                                                     </div>
                                                     <div class="container">
                                                         <div class="specs-points-container">
-                                                            <p class="company"><strong>Company </strong>${res.category}</p>
+                                                            <p class="company"><strong>Category </strong>${res.category}</p>
                                                             <p class="price"><strong>Price </strong>${res.price}</p>
                                                             <p style="display: none;" class="transmission"><strong>Transmission </strong>${res.location}</p>
                                                             <p style="display: none;" id="spare_part_id" class="transmission"><strong>ID </strong>${res._id.$oid}</p>
@@ -170,54 +170,56 @@
                 })
             }
             function checkSession()
-            {
-                temp();
-                var obj=(window.localStorage.getItem('usr'));
-                if(obj==null)
                 {
-                    $("#Login").show();
-                    $("#signup").show();
-                    $("#LogOut").hide();
-                }
-                else
-                {
-                    $(document).ready(function(e)
+                    temp();
+                    var obj=(window.localStorage.getItem('usr'));
+                    console.log(window.location.href)
+                    if(obj==null)
                     {
-                        $("#Login").hide();
-                        $("#signup").hide();
-                        $("#LogOut").show();
-                    })
-                }
-            }
-            function logout(e)
-            {
-                e.preventDefault();
-                window.localStorage.clear();
-                window.location='/'
-                $("#Login").show();
-                $("#signup").show();
-                $("#LogOut").hide();
-            }
-            function forcetoLogin(e)
-            {
-                var obj=(window.localStorage.getItem('usr'));
-                if(obj==null)
-                {
-                    e.preventDefault();
-                    window.location='/signup'
-                }
-                else
-                {
-                    $(document).ready(function(e)
+                        $("#Login").show();
+                        $("#signup").show();
+                        $("#LogOut").hide();
+                    }
+                    else
                     {
-                        $("#Login").hide();
-                        $("#signup").hide();
-                        $("#LogOut").show();
-                    })
+                        $(document).ready(function(e)
+                        {
+                            $("#Login").hide();
+                            $("#signup").hide();
+                            $("#LogOut").show();
+                        })
+                    }
                 }
-            }
+                function logout(e)
+                        {
+                            e.preventDefault();
+                            window.localStorage.clear();
+                            window.location='/'
+                            $("#Login").show();
+                            $("#signup").show();
+                            $("#LogOut").hide();
+                        }
+                function forcetoLogin(e)
+                {
+                    var obj=(window.localStorage.getItem('usr'));
+                    if(obj==null)
+                    {
+                        e.preventDefault();
+                        window.location='/login?page='+11;
+                    }
+                    else
+                    {
+                        $(document).ready(function(e)
+                        {
+                            $("#Login").hide();
+                            $("#signup").hide();
+                            $("#LogOut").show();
+                        })
+                    }
+                }
         
         </script>
+
 
         <style>
             body {
@@ -242,10 +244,10 @@
                 </div>
             </div>
             <div class="ad-post-button-div">                    
-                <a href="/ad" onclick="forcetoLogin(event)" id="postAddButton">Post a car ad</a>
+                <a href="/ad" onclick="forcetoLogin(event)" id="postAddButton">Sell Car</a>
             </div>
             <div class="ad-post-button-div">                    
-                <a href="/spare-part-ad" onclick="forcetoLogin(event)" id="postAddButton">Post a spare part ad</a>
+                <a href="/spare-part-ad" onclick="forcetoLogin(event)" id="postAddButton">Sell Spare Part</a>
             </div>
         </div>
     </section>

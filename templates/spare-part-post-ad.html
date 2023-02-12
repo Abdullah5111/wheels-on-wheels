@@ -47,8 +47,9 @@
                                 <option value="Lights">Lights</option>
                                 <option value="Sound">Sound System</option>
                             </select>
-                            <input class="my-form-input" type = "text" name = "price" placeholder="price" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "location" placeholder="location" value="temp" required/>
+                            <input class="my-form-input" type = "text" name = "price" placeholder="price" required/>
+                            <input class="my-form-input" type = "text" name = "location" placeholder="location" required/>
+                            <input class="my-form-input" type = "text" name = "phone_number" placeholder="phone number" required/>
                             <input style="display: none;" class="my-form-input" type = "text" name = "status" placeholder="status" value="not-approved" required/>
                             <input id="image" class="my-form-input" type = "file" name = "file" required/>
                             <input class="my-form-input my-button" id="proceed" value = "Proceed" type="button"/>
@@ -85,6 +86,8 @@
                 var obj=JSON.parse(window.localStorage.getItem('usr'));
                 var name=obj[0].name;
                 data['creator'] = name;
+                data['image']= "../static/images/ads/parts/" + file1.name;
+                console.log(data['image'])
                 data=JSON.stringify(data);
                 $("#container1").css("display","none");
                 $("#container3").css("display","block");

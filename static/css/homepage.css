@@ -441,6 +441,105 @@
     .brands-cards{ grid-template-columns: repeat(4, 1fr); }
 }
 
+
+/*Spare parts*/
+.engine-card{
+    background-image: url('../images/home-parts/engine1.jpg');
+    background-size: 90%;
+    background-position: center;
+    transition: background-size 10s;
+}
+
+.engine-card:hover{
+    background-size: 150%;
+}
+
+.brakes-card{
+    background-image: url('../images/home-parts/brakes.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.brakes-card:hover{
+    background-size: 150%;
+}
+
+.interior-card{
+    background-image: url('../images/home-parts/interior.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.interior-card:hover{
+    background-size: 150%;
+}
+
+.exterior-card{
+    background-image: url('../images/home-parts/exterior.jpeg');
+    background-size: 98%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.exterior-card:hover{
+    background-size: 150%;
+}
+
+.body-card{
+    background-image: url('../images/home-parts/lights.jpeg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.body-card:hover{
+    background-size: 150%;
+}
+
+.tyres-card{
+    background-image: url('../images/home-parts/tyres.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+.tyres-card:hover{
+    background-size: 200%;
+}
+
+.oil-card:hover{
+    background-size: 150%;
+}
+
+.oil-card{
+    background-image: url('../images/home-parts/oil.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+
+
+.audio-card{
+    background-image: url('../images/home-parts/video.jpg');
+    background-size: 100%;
+    background-position: center;
+
+    transition: background-size 10s;
+}
+
+.audio-card:hover{
+    background-size: 150%;
+}
+
+
 /* footer***************************************************************************************************************** */
 
 .footer-section{

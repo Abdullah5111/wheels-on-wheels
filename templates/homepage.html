@@ -16,51 +16,51 @@
     <!--   Added     -->
     <script>
         function checkSession()
-        {
-            var obj=(window.localStorage.getItem('usr'));
-        
-            if(obj==null)
             {
+                var obj=(window.localStorage.getItem('usr'));
+           
+                if(obj==null)
+                {
+                    $("#Login").show();
+                    $("#signup").show();
+                    $("#LogOut").hide();
+                }
+                else
+                {
+                    $(document).ready(function(e)
+                    {
+                        $("#Login").hide();
+                        $("#signup").hide();
+                        $("#LogOut").show();
+                    })
+                }
+            }
+        function logout(e)
+            {
+                e.preventDefault();
+                window.localStorage.clear();
                 $("#Login").show();
                 $("#signup").show();
                 $("#LogOut").hide();
             }
-            else
-            {
-                $(document).ready(function(e)
-                {
-                    $("#Login").hide();
-                    $("#signup").hide();
-                    $("#LogOut").show();
-                })
-            }
-        }
-        function logout(e)
-        {
-            e.preventDefault();
-            window.localStorage.clear();
-            $("#Login").show();
-            $("#signup").show();
-            $("#LogOut").hide();
-        }
         function forcetoLogin(e)
-        {
-            var obj=(window.localStorage.getItem('usr'));
-            if(obj==null)
             {
-                e.preventDefault();
-                window.location='/signup'
-            }
-            else
-            {
-                $(document).ready(function(e)
+                var obj=(window.localStorage.getItem('usr'));
+                if(obj==null)
                 {
-                    $("#Login").hide();
-                    $("#signup").hide();
-                    $("#LogOut").show();
-                })
+                    e.preventDefault();
+                    window.location='/login?seller='+11;
+                }
+                else
+                {
+                    $(document).ready(function(e)
+                    {
+                        $("#Login").hide();
+                        $("#signup").hide();
+                        $("#LogOut").show();
+                    })
+                }
             }
-        }
         function CheckLogin(e)
         {
             var obj=window.localStorage.getItem('usr');
@@ -295,6 +295,73 @@
             </div>
         </div>
     </section>
+
+<!--spare parts-->
+<section class="brands-section">
+    <div class="brands-container">
+        <div class="brands-section-heading">
+            <h2>Spare Parts</h2>
+        </div>
+        <div class="brands-cards">
+            <a href="/get-spare-parts-engine" class="brand-card engine-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                        Car Engine & mechanical Parts
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-oil" class="brand-card brakes-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                        Brakes & Brakes Oil             
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-interior" class="brand-card interior-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                        Interior Decoration
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-exterior" class="brand-card exterior-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                        Exterior Decoration
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-lights" class="brand-card body-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                       Lights & Electrical
+                    </p>
+                </div>
+            </a>
+            <a href="/model-MG" class="brand-card tyres-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                       Tyres & wheels
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-oil" class="brand-card oil-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                       Oils & lubricants
+                    </p>
+                </div>
+            </a>
+            <a href="/get-spare-parts-sound" class="brand-card audio-card">
+                <div class="brand-card-div">
+                    <p class="brand-label">
+                        Audio & Video
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
     <section class="footer-section">
         <div class="footer-div">

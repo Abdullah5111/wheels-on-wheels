@@ -21,6 +21,7 @@ class SparePart(db.Document):
     category=db.StringField(required=True)
     price=db.StringField(required=True)
     location=db.StringField(required=True)
+    phone_number=db.StringField(required=True)
     image=db.StringField(required=True)
     creator=db.StringField(required=True)
     status=db.StringField(required=True)

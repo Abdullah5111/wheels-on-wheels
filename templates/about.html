@@ -14,32 +14,38 @@
 
         <script>
             function checkSession()
-            {
-                var obj=(window.localStorage.getItem('usr'));
-                if(obj==null)
                 {
+                    var obj=(window.localStorage.getItem('usr'));
+                    if(obj==null)
+                    {
+                        console.log(obj)
+                       $("#Login").show();
+                        $("#signup").show();
+                        $("#LogOut").hide();
+                    }
+                    else
+                    {
+                        $(document).ready(function(e)
+                        {
+                            $("#Login").hide();
+                            $("#signup").hide();
+                            $("#LogOut").show();
+                        })
+                    }
+                }
+            function logout(e)
+                {
+                    e.preventDefault();
+                    window.localStorage.clear();
                     $("#Login").show();
                     $("#signup").show();
                     $("#LogOut").hide();
                 }
-                else
+                function login(e)
                 {
-                    $(document).ready(function(e)
-                    {
-                        $("#Login").hide();
-                        $("#signup").hide();
-                        $("#LogOut").show();
-                    })
+                    e.preventDefault();
+                    window.location='/login?about='+20;
                 }
-            }
-            function logout(e)
-            {
-                e.preventDefault();
-                window.localStorage.clear();
-                $("#Login").show();
-                $("#signup").show();
-                $("#LogOut").hide();
-            }
             </script>
 
         <style>
@@ -59,7 +65,7 @@
                     </div>
                     <div class="navbar-buttons">
                         <a href="about-us">About</a>
-                        <a href="/login" id="Login">Login</a>
+                        <a href="/login" id="Login" onclick="login(event)">Login</a>
                         <a href="/signup" id="signup">Sign up</a>
                         <a href="" id="LogOut" onclick="logout(event)">Log out</a>
                     </div>

@@ -9,6 +9,7 @@ class AdApi(Resource):
 
     def post(self):
         data=request.get_json()
+        print("car data is",data)
         ad = Ad(**data).save()
         return {'id':str(ad.id)},200
 
@@ -19,6 +20,7 @@ class SparePartAdApi(Resource):
 
     def post(self):
         data=request.get_json()
+        print(data)
         ad = SparePart(**data).save()
         return {'id':str(ad.id)},200
 

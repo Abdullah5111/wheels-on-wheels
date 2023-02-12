@@ -71,11 +71,75 @@
                         }
                         else{
                             window.localStorage.setItem('usr',JSON.stringify(result))
-                            var obj=JSON.parse(window.localStorage.getItem('usr'));
-                            var name=obj.name;
-                            console.log(obj.name);
-                            console.log(window.localStorage.getItem('usr'))
-                            window.location = '/seller-dashboard?nme='+name;
+                           // console.log(window.location.href)
+                          
+                            //console.log(window.location.href.indexOf('?page=')>9)
+                            if (window.location.href.indexOf('?page=')>9) 
+                            {
+                                console.log(window.location.href.indexOf('?page=')>9)
+                                window.location='/'
+                            }
+                            else if(window.location.href.indexOf('?seller=')>11)
+                            {
+                                window.location='/seller-dashboard'
+                            }
+                            else if(window.location.href.indexOf('?about=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/about-us'
+                            }
+                            else if(window.location.href.indexOf('?havel=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-haval'
+                            }
+                            else if(window.location.href.indexOf('?honda=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-honda'
+                            }
+                            else if(window.location.href.indexOf('?hyundai=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-hyundai'
+                            }
+                            else if(window.location.href.indexOf('?kia=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-kia'
+                            }
+                            else if(window.location.href.indexOf('?mg=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-MG'
+                            }
+                            else if(window.location.href.indexOf('?pugeot=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-pugeot'
+                            }
+                            else if(window.location.href.indexOf('?suzuki=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-suzuki'
+                            }
+                            else if(window.location.href.indexOf('?toyota=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/model-toyota'
+                            }
+                            else if(window.location.href.indexOf('?get-ads=')>20)
+                            {
+                                console.log("jsjd")
+                                window.location='/get-ads'
+                            }
+                            else{
+                                console.log("here")
+                                window.location = '/';
+                            }
+                           
+                            // window.localStorage.setItem('usr',JSON.stringify(result))\
+                            // JSON.parse(window.localStorage.getItem('usr'))
                         }
                     },
                     error: function(xhr, resp, text) {

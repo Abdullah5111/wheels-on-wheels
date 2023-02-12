@@ -1,8 +1,9 @@
 from flask import Flask, request, render_template
 from flask_restful import Api
 import db
-from models import Ad, Seller
+from models import Ad, Seller, SparePart
 import routes
+from mail import function
 
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = {
@@ -31,10 +32,6 @@ def login():
 def get_ads():
    context = Ad.objects.filter(status = "approved")
    return render_template('get-ads.html', context = context)
-	
-@app.route('/get-spare-parts', methods = ['GET', 'POST'])
-def get_spare_parts():
-   return render_template('get-spare-parts.html')
 
 @app.route('/car',  methods = ['GET','POST'])
 def car():
@@ -104,6 +101,46 @@ def model_suzuki():
    ,["Suzuki Swift","Suzuki Alto","Suzuki Cultus","Suzuki WagonR"],["45,00,000 pkr","25,00,000 pkr","35,00,000 pkr","32,00,000 pkr"]]
 	return render_template('model-suzuki.html', urls=urls)
 
+@app.route('/get-spare-parts-engine')
+def get_spare_parts_engine():
+   context = SparePart.objects.filter(category = "Engine")
+   return render_template('get-spare-parts-engine.html', context=context)
+
+@app.route('/get-spare-parts-interior')
+def get_spare_parts_interior():
+   context = SparePart.objects.filter(category = "Interior")
+   return render_template('get-spare-parts-interior.html', context=context)
+
+@app.route('/get-spare-parts-exterior')
+def get_spare_parts_exterior():
+   context = SparePart.objects.filter(category = "Exterior")
+   return render_template('get-spare-parts-exterior.html', context=context)
+
+@app.route('/get-spare-parts-brakes')
+def get_spare_parts_brakes():
+   context = SparePart.objects.filter(category = "Brakes")
+   return render_template('get-spare-parts-brakes.html', context=context)
+
+@app.route('/get-spare-parts-oil')
+def get_spare_parts_oil():
+   context = SparePart.objects.filter(category = "Oil")
+   return render_template('get-spare-parts-oil.html', context=context)
+
+@app.route('/get-spare-parts-wheels')
+def get_spare_parts_wheels():
+   context = SparePart.objects.filter(category = "Wheels")
+   return render_template('get-spare-parts-wheels.html', context=context)
+
+@app.route('/get-spare-parts-lights')
+def get_spare_parts_lights():
+   context = SparePart.objects.filter(category = "lights")
+   return render_template('get-spare-parts-lights.html', context=context)
+
+@app.route('/get-spare-parts-sound')
+def get_spare_parts_sound():
+   context = SparePart.objects.filter(category = "Sound")
+   return render_template('get-spare-parts-sound.html', context=context)
+
 @app.route('/admin')
 def admin():
 	return render_template('admin.html', msg="ADMIN PANNEL")
@@ -120,6 +157,15 @@ def admin_success():
 def admin_dashboard():
    return render_template('admin-dashboard.html')
 
+@app.route('/inspection', methods =['GET','POST'])
+def inspection():
+   return render_template("inpection.html")
+
+@app.route('/sent-mail',methods = ['GET','POST'])
+def sent_mail():
+   email = request.form.get("email")
+   function(email)
+   return render_template("mail-sent.html")
 
 if __name__ == '__main__':
 	app.run(debug=True)

@@ -37,15 +37,15 @@
                     <div class="container">
                         <form id="form" class="ad-form" action="" method="post"
                             enctype = "multipart/form-data">
-                            <input class="my-form-input" type = "text" name = "company" placeholder="company" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "model" placeholder="model" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "price" placeholder="price" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "registered_year" placeholder="registered year" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "registered_loc" placeholder="registered loc" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "current_loc" placeholder="current loc" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "engine_cap" placeholder="engine cap" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "km_driven" placeholder="km driven" value="temp" required/>
-                            <input class="my-form-input" type = "text" name = "transmission" placeholder="transmission" value="temp" required/>
+                            <input class="my-form-input" type = "text" name = "company" placeholder="company" required/>
+                            <input class="my-form-input" type = "text" name = "model" placeholder="model" required/>
+                            <input class="my-form-input" type = "text" name = "price" placeholder="price" required/>
+                            <input class="my-form-input" type = "text" name = "registered_year" placeholder="registered year" required/>
+                            <input class="my-form-input" type = "text" name = "registered_loc" placeholder="registered location" required/>
+                            <input class="my-form-input" type = "text" name = "current_loc" placeholder="current location" required/>
+                            <input class="my-form-input" type = "text" name = "engine_cap" placeholder="engine capacity" required/>
+                            <input class="my-form-input" type = "text" name = "km_driven" placeholder="km driven" required/>
+                            <input class="my-form-input" type = "text" name = "transmission" placeholder="transmission" required/>
                             <input style="display: none;" class="my-form-input" type = "text" name = "status" placeholder="status" value="not-approved" required/>
                             <input id="image1" class="my-form-input" type = "file" name = "file1" required/>
                             <input id="image2" class="my-form-input" type = "file" name = "file2" required/>
@@ -63,10 +63,10 @@
                 <div id="container2" class="container2" style="display: none;">
                     <div class="container">
                         <form id="seller-form" class="seller-form" action="" method="post">
-                            <input class="my-form-input" type = "text" name = "c_name" placeholder="complete name" value="Abcd"  required/>
-                            <input class="my-form-input" type = "text" name = "email" placeholder="email" value="Abcd"  required/>
-                            <input class="my-form-input" type = "text" name = "phone_number" placeholder="phone" value="Abcd"  required/>
-                            <input class="my-form-input" type = "text" name = "address" placeholder="address" value="Abcd"  required/>
+                            <input class="my-form-input" type = "text" name = "c_name" placeholder="complete name"  required/>
+                            <input class="my-form-input" type = "text" name = "email" placeholder="email"  required/>
+                            <input class="my-form-input" type = "text" name = "phone_number" placeholder="phone"  required/>
+                            <input class="my-form-input" type = "text" name = "address" placeholder="address"  required/>
                             <input class="my-form-input my-button" id="submit" value = "Submit" type="button"/>
                         </form>
                         <a class="homepage-link" href="/seller-dashboard">
@@ -103,10 +103,10 @@
                 var obj=JSON.parse(window.localStorage.getItem('usr'));
                 var name=obj[0].name;
                 data['creator'] = name;
-                data['image1']= "../static/images/ads/" + file1.name;
-                data['image2']= "../static/images/ads/" + file2.name;
-                data['image3']= "../static/images/ads/" + file3.name;
-                data['image4']= "../static/images/ads/" + file4.name;
+                data['image1']= "../static/images/ads/cars/" + file1.name;
+                data['image2']= "../static/images/ads/cars/" + file2.name;
+                data['image3']= "../static/images/ads/cars/" + file3.name;
+                data['image4']= "../static/images/ads/cars/" + file4.name;
                 data=JSON.stringify(data);
                 $("#container1").css("display","none");
                 $("#container2").css("display","block");

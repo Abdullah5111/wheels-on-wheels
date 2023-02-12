@@ -82,11 +82,12 @@
                                     <p><strong>Creator </strong>${res.creator}</p>
                                     <p><strong>Price </strong>${res.price}</p>
                                     <p><strong>Location </strong>${res.location}</p>
+                                    <p><strong>Location </strong>${res.phone_number}</p>
                                     <a href="/admin-dashboard" id="approve-spare-part">Approve Ad</a>
                                     <br><br><br>
                                 </div>`
                     container.insertAdjacentHTML("beforeend", ad_div);
-                })                    
+                })                  
             }
         }
         )
@@ -157,7 +158,6 @@
         $(document).on("click", "#approve-car", function(event){
             var ad_id = document.getElementById("car_ad_id").innerHTML
             ad_id = ad_id.substring()
-            console.log(ad_id);
             var data = {"status": "approved"},
             data=JSON.stringify(data);
             $.ajax({
@@ -176,9 +176,9 @@
         });
         
         $(document).on("click", "#approve-spare-part", function(event){
+            // var ad_id = $(this).closest('.ad').find('#spare_part_ad_i').text().split(" ").pop();
             var ad_id = document.getElementById("spare_part_ad_id").innerHTML
             ad_id = ad_id.substring()
-            console.log(ad_id);
             var data = {"status": "approved"},
             data=JSON.stringify(data);
             $.ajax({

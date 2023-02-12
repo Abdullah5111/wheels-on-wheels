@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
     <script>
+        function verifyAdmin(e)
+        {
+           console.log("the hrf id",window.location.href)
+           if (window.location.href.indexOf('?page=')>20) 
+            {
+                console.log("jdjsadj")
+                //return
+            }
+            else{
+                window.location='/admin'
+                e.preventDefault()
+               
+            }
+        }
         function checkSession(){
             $.ajax({
                 url: '/api/ads',
@@ -48,7 +62,8 @@
                                         <p><strong>Registered Location </strong>${res.registered_loc}</p>
                                         <p><strong>Registered Year </strong>${res.registered_year}</p>
                                         <p><strong>Transmission </strong>${res.transmission}</p>
-                                        <a href="/admin-dashboard" id="approve-car">Approve Ad</a>
+                                        <a href="/admin-dashboard" id="approve-car">Approve Ad</a><br><br>
+                                        <a href="/admin-dashboard" id="remove-car">Remove Ad</a>
                                         <br><br><br>
                                     </div>`
                         container.insertAdjacentHTML("beforeend", ad_div);
@@ -83,7 +98,8 @@
                                     <p><strong>Price </strong>${res.price}</p>
                                     <p><strong>Location </strong>${res.location}</p>
                                     <p><strong>Location </strong>${res.phone_number}</p>
-                                    <a href="/admin-dashboard" id="approve-spare-part">Approve Ad</a>
+                                    <a href="/admin-dashboard" id="approve-spare-part">Approve Ad</a><br><br>
+                                    <a href="/admin-dashboard" id="remove-spare-part">Remove Ad</a>
                                     <br><br><br>
                                 </div>`
                     container.insertAdjacentHTML("beforeend", ad_div);
@@ -141,7 +157,7 @@
     </style>
 
 </head>
-<body onload="javascript:checkSession()">
+<body onload="javascript:checkSession() ,verifyAdmin(Event)">
     <p class="main-heading">Admin dashboard</p>
 
     <p class="sub-heading">Cars</p>
@@ -174,7 +190,29 @@
                 }
             });
         });
-        
+        $(document).on("click", "#remove-car", function(event){
+            var ad_id = document.getElementById("car_ad_id").innerHTML
+            ad_id = ad_id.substring()
+            console.log(ad_id);
+            var data = {"status": "approved"},
+            data=JSON.stringify(data);
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/ad/' + ad_id,
+                data: data,
+                dataType : 'json',
+                contentType: "application/json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        });
+
+
+
         $(document).on("click", "#approve-spare-part", function(event){
             // var ad_id = $(this).closest('.ad').find('#spare_part_ad_i').text().split(" ").pop();
             var ad_id = document.getElementById("spare_part_ad_id").innerHTML
@@ -195,6 +233,27 @@
                 }
             });
         });
+        $(document).on("click", "#remove-spare-part", function(event){
+            var ad_id = document.getElementById("spare_part_ad_id").innerHTML
+            ad_id = ad_id.substring()
+            console.log(ad_id);
+            var data = {"status": "approved"},
+            data=JSON.stringify(data);
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/spare-part/' + ad_id,
+                data: data,
+                dataType : 'json',
+                contentType: "application/json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        });
+
 
     </script>
 </body>

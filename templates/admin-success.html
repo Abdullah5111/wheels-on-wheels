@@ -8,6 +8,13 @@
 
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <script>
+        function redirectAdmin(e)
+        {
+            e.preventDefault();
+            window.location='/admin-dashboard?page='+20;
+        }
+    </script>
 
     <style>
         body {
@@ -45,7 +52,8 @@
 <body>
     <div class="container">
         <h1>Admin logged in successfully</h1>
-        <a href="/admin-dashboard">Admin Dashboard</a>
+        <!-- <a href="/admin-dashboard">Admin Dashboard</a> -->
+        <a href="" id="admin-dashboard" onclick="redirectAdmin(event)">Click to visit admin dashboard</a>
     </div>
 </body>
 </html>
